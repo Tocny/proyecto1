@@ -10,7 +10,7 @@ public class ClienteFactory extends ObjetoFactory{
      * @param datos el arreglo de cadenas de donde se van a obtener los datos.
      * @return una instancia de Cliente a partir de los datos dados.
      */
-    @Override public ObjetoCheemsMart fabricaObjeto(String[] datos){
+    @Override public Cliente fabricaObjeto(String[] datos){
         if(datos.length != 6){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
@@ -21,7 +21,6 @@ public class ClienteFactory extends ObjetoFactory{
         String usuario = datos[3].trim();
         String contrasena = datos[4].trim();
         String saldoString = datos[5].trim();
-
 
         int id;
         Pais pais;
@@ -41,6 +40,31 @@ public class ClienteFactory extends ObjetoFactory{
         CuentaBancaria cuentaBancaria = new CuentaBancaria(usuario, contrasena, saldo, pais);
 
         return new Cliente(id, nombre, cuentaBancaria, pais);
+
+    }
+
+    /**
+     * Método que descompone un objeto ProductoConcreto en una cadena de texto separada por comas.
+     * @param objeto el objeto a descomponer.
+     * @return una cadena que contiene los datos del objeto separados por comas.
+     */
+    @Override public String descomponeObjeto(ObjetoCheemsMart objeto) {
+    
+        if (!(objeto instanceof Cliente)) {
+            throw new IllegalArgumentException("El objeto no es un cliente.");
+        }
+
+        Cliente cliente = (Cliente) objeto;
+
+        String id = String.valueOf(cliente.getId());
+        String nombre = cliente.getNombre();
+        CuentaBancaria cuenta = cliente.getCuentaBancaria();
+        String usuario = cuenta.getUsuario();
+        String contrasena = cuenta.getContrasena();
+        String saldo = String.valueOf(cuenta.getSaldo());
+        String pais = cliente.getPais().name();
+
+        return String.join(",", id, nombre, pais, usuario, contrasena, saldo);
 
     }
 }

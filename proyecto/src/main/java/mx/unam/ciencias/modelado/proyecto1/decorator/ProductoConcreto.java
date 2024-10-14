@@ -40,6 +40,22 @@ public class ProductoConcreto implements Producto{
     }
 
     /**
+     * Getter del precio base del producto.
+     * @return precioBase.
+     */
+    public double getPrecioBase(){
+        return precioBase;
+    }
+
+    /**
+     * Setter del precio base del producto.
+     * @param precioBase el nuevo precio base.
+     */
+    public void setPrecioBase(double precioBase){
+        this.precioBase = precioBase;
+    }
+
+    /**
      * Getter del precio del producto
      * @return el precio del producto.
      */

@@ -73,6 +73,22 @@ public class CuentaBancaria {
     }
 
     /**
+     * Getter de la contraseña de la cuenta.
+     * @return contrasena.
+     */
+    public String getContrasena(){
+        return contrasena;
+    }
+
+    /**
+     * Setter de la contraseña.
+     * @param contrasena la nueva contraseña para la cuenta.
+     */
+    public void setContrasena(String contrasena){
+        this.contrasena = contrasena;
+    }
+
+    /**
      * Getter del saldo de la cuenta.
      * @return saldo.
      */

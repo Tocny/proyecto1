@@ -28,10 +28,34 @@ public abstract class ObjetoFactory{
     }
 
     /**
+     * Método que se encarga de, a partir de una lista de objetos, generar una lista de cadenas
+     * con el formato especificado para ser vaciado en un archivo (que funjirá como base de datos).
+     * @param objetos la lista de objetos que queremos descomponer.
+     * @return una lista de cadenas que corresponde a los objetos descompuestos.
+     */
+    public List<String> generaListaCadenas(List<ObjetoCheemsMart> objetos){
+        List<String> lineas = new ArrayList<>();
+
+        for(ObjetoCheemsMart objeto : objetos){
+            lineas.add(descomponeObjeto(objeto));
+        }
+
+        return lineas;
+    }
+
+    /**
      * Método abstracto que creará un producto a partir de tres cadenas.
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Producto con los datos dados.
      */
     public abstract ObjetoCheemsMart fabricaObjeto(String[] datos);
+
+    /**
+     * Método que a partir de una instancia de ObjetoCheemsMart se encarga de 
+     * descomponerlo en las componentes requeridas para eventualmente vaciarlo en un archivo.
+     * @param objeto la instancia de ObjetoCheemsMart
+     * @return los datos del objeto descompuestos en el formato de los archivos.
+     */
+    public abstract String descomponeObjeto(ObjetoCheemsMart objeto);
 
 }
