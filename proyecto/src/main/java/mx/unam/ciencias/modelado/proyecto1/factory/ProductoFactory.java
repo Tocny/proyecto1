@@ -1,50 +1,42 @@
 package mx.unam.ciencias.modelado.proyecto1.factory;
 
-import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
-import java.util.ArrayList;
-import java.util.List;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
+import java.util.Arrays;
 
 /**
- * Fabrica del patrón factory. Se encarga principalmente de generar una lista
- * de productos dada una forma de fabricar esos productos.
+ * Clase fabrica del patrón factory. Se encarga de implementar una forma de 
+ * fabricar productos concretos a partir de sus datos.
  */
-public abstract class ProductoFactory{
+public class ProductoFactory extends ObjetoFactory{
 
     /**
-     * Método que genera una lista de productos (catalogo) a partir de una lista de cadenas que
-     * contienen los datos de cada producto.
-     * @param lineas una lista de cadenas, se asume que está separada por ",".
-     * @return una lista de instancias de Producto.
-     */
-    public List<Producto> generaListaProductos(List<String> lineas){
-        List<Producto> productos = new ArrayList<>();
-
-        for(String linea: lineas){
-            String[] partes = linea.split(",");
-
-            if(partes.length != 3){
-                throw new IllegalArgumentException("Formato de producto erroneo: " +  linea);
-            }
-
-            String nombre = partes[0].trim();
-            String precioString = partes[1].trim();
-            String departamentoString = partes[2].trim();
-
-            Producto producto = fabricaProducto(nombre, precioString, departamentoString);
-
-            productos.add(producto);
-        }
-
-        return productos;
-    }
-
-    /**
-     * Método abstracto que creará un producto a partir de tres cadenas.
-     * @param nombre el nombre del producto.
-     * @param precioString el precio del producto en forma de cadena.
-     * @param departamentoString el departamento del producto en forma de cadena.
+     * Implementación del método para fabricar productos concretos a partir de 3 cadenas.
+     * Hace las respectivas conversiones y regresa la instancia generada.
+     * @param datos un arreglo de strings para abstraer los datos del objeto a fabricar.
      * @return una instancia de Producto con los datos dados.
      */
-    public abstract Producto fabricaProducto(String nombre, String precioString, String departamentoString);
+    @Override public ObjetoCheemsMart fabricaObjeto(String[] datos){
+        if(datos.length != 3){
+                throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
+        }
 
+        String nombre = datos[0].trim();
+        String precioString = datos[1].trim();
+        String departamentoString = datos[2].trim();
+
+        double precioBase;
+        Departamento departamento;
+
+        try{
+            precioBase = Double.parseDouble(precioString);
+            departamento = Departamento.fromString(departamentoString);
+
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("Formato erroneo: " + precioString);
+        }catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("Formato erroneo: " + departamentoString);
+        }
+
+        return new ProductoConcreto(nombre, precioBase, departamento);
+    }
 }

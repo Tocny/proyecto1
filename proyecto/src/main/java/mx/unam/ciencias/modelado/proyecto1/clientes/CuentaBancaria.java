@@ -1,6 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.clientes;
 
-import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
+import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.*;
 
 /**Clase para cuentas bancarias, cada cliente cuenta con una instancia de esta clase. */
 public class CuentaBancaria {
@@ -20,11 +20,31 @@ public class CuentaBancaria {
      * @param saldo el saldo de la cuenta bancaria.
      * @param moneda el tipo de divisa que usa la cuenta.
      */
-    public CuentaBancaria(String usuario, String contrasena, double saldo, Moneda moneda) {
+    public CuentaBancaria(String usuario, String contrasena, double saldo, Pais pais) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.saldo = saldo;
-        this.moneda = moneda;
+        this.moneda = determinaMoneda(pais);
+    }
+
+    /**
+     * Método privado para determinar la moneda dada una instancia de Pais.
+     * @param pais una instancia de pais.
+     * @return una instancia de Moneda. La moneda correspondiente al pais.
+     */
+    private Moneda determinaMoneda(Pais pais){
+        if(pais == Pais.MEXICO){
+            return new Peso();
+
+        } else if (pais == Pais.ESTADOS_UNIDOS){
+            return new Dolar();
+
+        } else if(pais == Pais.BRASIL){
+            return new Real();
+
+        } else{
+            return new Dolar();
+        }
     }
 
     /**

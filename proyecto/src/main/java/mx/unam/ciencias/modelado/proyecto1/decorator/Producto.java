@@ -1,9 +1,10 @@
 package mx.unam.ciencias.modelado.proyecto1.decorator;
 
+import mx.unam.ciencias.modelado.proyecto1.factory.ObjetoCheemsMart;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 
 /**Interfaz para los productos de la tienda. */
-public interface Producto{
+public interface Producto extends ObjetoCheemsMart{
 
     /**
      * getter del nombre del producto.
