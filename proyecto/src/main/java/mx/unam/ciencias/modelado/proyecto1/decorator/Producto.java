@@ -1,10 +1,21 @@
 package mx.unam.ciencias.modelado.proyecto1.decorator;
 
-import mx.unam.ciencias.modelado.proyecto1.factory.ObjetoCheemsMart;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 
 /**Interfaz para los productos de la tienda. */
-public interface Producto extends ObjetoCheemsMart{
+public interface Producto {
+
+    /**
+     * Getter del precio base del producto, todos los productos tienen un precio sin ofertas y en dolares.
+     * @return el precio original del producto.
+     */
+    public double getPrecioBase();
+
+    /**
+     * Getter del codigo de barras de un producto
+     * @return una cadena que representa un identificador para un producto.
+     */
+    public String getCodigo();
 
     /**
      * getter del nombre del producto.

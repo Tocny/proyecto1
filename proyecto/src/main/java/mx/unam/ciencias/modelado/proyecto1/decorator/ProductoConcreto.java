@@ -3,24 +3,44 @@ package mx.unam.ciencias.modelado.proyecto1.decorator;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 
 public class ProductoConcreto implements Producto{
-    
+
+    /**Codigo asociado al producto. */
+    private String codigo;
     /**Nombre del producto. */
     private String nombre;
     /**Precio del producto. */
     private double precioBase;
     /**Departamento al que pertenece el producto. */
     private Departamento departamento;
-
+    
     /**
      * Constructor de la clase. Asigna atributos.
+     * @param codigo una cadena asociado al producto (aka codigo de barras).
      * @param nombre el nombre del producto.
      * @param precioBase el precio del producto (base, en dolares)
      * @param departamento el departamento al que pertenece el producto.
      */
-    public ProductoConcreto(String nombre, double precioBase, Departamento departamento) {
+    public ProductoConcreto(String codigo, String nombre, double precioBase, Departamento departamento) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.precioBase = precioBase;
         this.departamento = departamento;
+    }
+
+    /**
+     * Getter del codigo del producto.
+     * @return codigo.
+     */
+    @Override public String getCodigo(){
+        return codigo;
+    }
+
+    /**
+     * Setter del codigo del producto.
+     * @param codigo el nuevo codigo del producto.
+     */
+    public void setCodigo(String codigo){
+        this.codigo = codigo;
     }
 
     /**
@@ -43,7 +63,7 @@ public class ProductoConcreto implements Producto{
      * Getter del precio base del producto.
      * @return precioBase.
      */
-    public double getPrecioBase(){
+    @Override public double getPrecioBase(){
         return precioBase;
     }
 

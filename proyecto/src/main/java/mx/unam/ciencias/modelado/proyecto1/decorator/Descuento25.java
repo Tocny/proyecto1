@@ -30,4 +30,13 @@ public class Descuento25 extends ProductoDecorator {
     @Override public String descripcion(Moneda moneda) {
         return super.producto.descripcion(moneda) + "[-25%]";
     }
+
+    /**
+     * Método envolver que nos permite envolver objetos entrantes a partir de instancias concretas.
+     * @param producto el producto que se desea envolver.
+     * @return una instancia del producto recibido con el decorador especifico.
+     */
+    @Override public Producto envolver(Producto producto){
+        return new Descuento25(producto);
+    }
 }
