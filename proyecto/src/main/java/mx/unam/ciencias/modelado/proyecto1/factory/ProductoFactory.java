@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * Clase fabrica del patrón factory. Se encarga de implementar una forma de 
- * fabricar productos concretos a partir de sus datos.
+ * fabricar y descomponer productos concretos a partir de sus datos.
  */
 public class ProductoFactory extends ObjetoFactory{
 
@@ -52,7 +52,7 @@ public class ProductoFactory extends ObjetoFactory{
 
         ProductoConcreto producto = (ProductoConcreto) objeto;
 
-        // Separamos los atributos del producto en una cadena separada por comas
+        //Procedemos a extraer todos los datos del cliente.
         String nombre = producto.getNombre();
         String precio = String.valueOf(producto.getPrecioBase());
         String departamento = producto.getDepartamento().name();

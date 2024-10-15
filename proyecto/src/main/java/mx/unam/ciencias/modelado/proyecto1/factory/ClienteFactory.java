@@ -3,6 +3,10 @@ package mx.unam.ciencias.modelado.proyecto1.factory;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import java.util.Arrays;
 
+/**
+ * Clase ClienteFactory que se encarga de fabricar y descomponer instancias de la clase Cliente,
+ * forma parte del patrón factory.
+ */
 public class ClienteFactory extends ObjetoFactory{
 
     /**
@@ -56,6 +60,7 @@ public class ClienteFactory extends ObjetoFactory{
 
         Cliente cliente = (Cliente) objeto;
 
+        //Procedemos a extraer todos los datos del cliente.
         String id = String.valueOf(cliente.getId());
         String nombre = cliente.getNombre();
         CuentaBancaria cuenta = cliente.getCuentaBancaria();
