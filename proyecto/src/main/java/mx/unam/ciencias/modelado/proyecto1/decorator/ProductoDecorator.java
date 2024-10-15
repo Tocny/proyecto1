@@ -2,7 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.decorator;
 
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 
-public abstract class ProductoDecorator implements  Producto{
+public abstract class ProductoDecorator implements Producto{
 
     /**Producto asociado al decorador. */
     protected Producto producto;

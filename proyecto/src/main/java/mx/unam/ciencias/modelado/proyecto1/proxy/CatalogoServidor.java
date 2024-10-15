@@ -3,7 +3,7 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteFabricante;
-import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoFabricante;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.*;
 import mx.unam.ciencias.modelado.proyecto1.common.ReaderWriter; 
 import java.rmi.RemoteException;
 import java.rmi.Naming;
@@ -21,7 +21,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     /**Instancia de la clase */
     private CatalogoServidor instancia;
     /**Productos del catalogo. */
-    private Map<String, Producto> productos;
+    private ProductoIterable productos;
     /**Clientes de nuestra base de datos. */
     private Map<String, Cliente> clientes;
     /**Fabrica de clientes. */

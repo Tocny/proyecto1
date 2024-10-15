@@ -18,13 +18,13 @@ public abstract class ProductoFactory {
      * @return un diccionario donde las claves son identificadores de producto
      *         y los valores son las instancias de Producto.
      */
-    public Map<String, Producto> generaProductosDiccionario(List<String> lineas) {
-        Map<String, Producto> productos = new HashMap<>();
+    public ProductoIterable generaProductosDiccionario(List<String> lineas) {
+        ProductoIterable productos = new ProductoIterable();
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
             Producto producto = fabricaProducto(datos);
-            productos.put(producto.getCodigo(), producto);
+            productos.agregar(producto);
         }
         return productos;
     }
@@ -35,10 +35,11 @@ public abstract class ProductoFactory {
      * @param productos el diccionario de productos que queremos descomponer.
      * @return una lista de cadenas que corresponde a los productos descompuestos.
      */
-    public List<String> generaListaCadenas(Map<String, Producto> productos) {
+    public List<String> generaListaCadenas(ProductoIterable productos) {
         List<String> lineas = new ArrayList<>();
 
-        for (Producto producto : productos.values()) {
+        for (Map.Entry<String, Producto> entrada : productos) {
+            Producto producto = entrada.getValue();
             lineas.add(descomponeProducto(producto));
         }
 
