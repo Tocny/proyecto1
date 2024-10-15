@@ -16,6 +16,22 @@ public abstract class ProductoDecorator implements  Producto{
     }
 
     /**
+     * Getter del precio base del producto. En caso de tener que acceder a el a pesar de haber sido decorado.
+     * @return precio base de la instancia de producto.
+     */
+    @Override public double getPrecioBase(){
+        return producto.getPrecioBase();
+    }
+
+    /**
+     * Getter del codigo asociado al producto.
+     * @return el método getCodigo() del producto local.
+     */
+    @Override public String getCodigo(){
+        return producto.getCodigo();
+    }
+
+    /**
      * Getter del nombre del producto
      * @return el nombre del producto.
      */
@@ -41,4 +57,11 @@ public abstract class ProductoDecorator implements  Producto{
      * Método abstracto para el precio del producto.
      */
     @Override public abstract double getPrecio(Moneda moneda);
+
+    /**
+     * Método envolver que nos permite envolver objetos entrantes a partir de instancias concretas.
+     * @param producto el producto que se desea envolver.
+     * @return una instancia del producto recibido con el decorador especifico.
+     */
+    public abstract Producto envolver(Producto producto);
 }

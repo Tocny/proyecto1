@@ -5,7 +5,7 @@ import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 /**Clase Cliente para los consumidores del mercado. */
 public class Cliente implements ClienteObservador {
     /**Id del cliente. */
-    private int id;
+    private String id;
     /**Nombre del cliente. */
     private String nombre;
     /**Cuenta bancaria asociada. */
@@ -20,10 +20,10 @@ public class Cliente implements ClienteObservador {
      * @param cuentaBancaria la cuenta bancaria asociada.
      * @param pais el pais del cliente.
      */
-    public Cliente(int id, String nombre, CuentaBancaria cuentaBancaria, Pais pais) {
-        this.id = id;
+    public Cliente(String nombre, CuentaBancaria cuentaBancaria, Pais pais) {
         this.nombre = nombre;
         this.cuentaBancaria = cuentaBancaria;
+        this.id = cuentaBancaria.getUsuario();
         this.pais = pais;
     }
 
@@ -31,7 +31,7 @@ public class Cliente implements ClienteObservador {
      * Getter del id.
      * @return id.
      */
-    public int getId() {
+    public String getID() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class Cliente implements ClienteObservador {
      * Setter del id.
      * @param id un entero que será el nuevo id.
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

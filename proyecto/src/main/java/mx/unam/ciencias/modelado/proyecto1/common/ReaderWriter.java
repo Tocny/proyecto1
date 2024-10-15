@@ -72,4 +72,33 @@ public class ReaderWriter {
         }
     }
 
+    /**
+     * Método para escribir una lista de cadenas en un archivo.
+     * Sobrescribe cualquier contenido existente en el archivo.
+     * @param lineas la lista de cadenas a escribir.
+     * @param fileName el nombre del archivo en el cual se va a escribir.
+     */
+    public static void writeList(List<String> lineas, String fileName) {
+        FileWriter out = null;
+
+        try {
+            // Sobrescribir el archivo existente
+            out = new FileWriter(fileName, false);
+            for (String linea : lineas) {
+                out.write(linea);
+                out.write("\n");
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+    }
+
 }
