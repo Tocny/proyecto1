@@ -1,7 +1,9 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
-import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.*;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteFabricante;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoFabricante;
 import mx.unam.ciencias.modelado.proyecto1.common.ReaderWriter; 
 import java.rmi.RemoteException;
 import java.rmi.Naming;
@@ -20,6 +22,10 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     private CatalogoServidor instancia;
     /**Productos del catalogo. */
     private Map<String, Producto> productos;
+    /**Clientes de nuestra base de datos. */
+    private Map<String, Cliente> clientes;
+    /**Fabrica de clientes. */
+    private ClienteFabricante fabricaClientes;
     /**Fabrica de productos */
     private ProductoFabricante fabricaProductos;
 
@@ -28,10 +34,14 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      * @throws RemoteException en caso de errores con el servidor remoto.
      */
     private CatalogoServidor() throws RemoteException{
-        List<String> lineas = ReaderWriter.read("Productos.csv");
+        List<String> lineasProductos = ReaderWriter.read("Productos.csv");
+        List<String> lineasClientes = ReaderWriter.read("Clientes.csv");
+        
+        fabricaClientes = new ClienteFabricante();
         fabricaProductos = new ProductoFabricante();
-
-        productos = fabricaProductos.generaProductosDiccionario(lineas);
+        
+        clientes = fabricaClientes.generaClientesDiccionario(lineasClientes);
+        productos = fabricaProductos.generaProductosDiccionario(lineasProductos);
 
     }
 
