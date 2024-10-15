@@ -23,7 +23,7 @@ public abstract class ProductoFactory {
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
-            Producto producto = fabricaObjeto(datos);
+            Producto producto = fabricaProducto(datos);
             productos.put(producto.getCodigo(), producto);
         }
         return productos;
@@ -39,7 +39,7 @@ public abstract class ProductoFactory {
         List<String> lineas = new ArrayList<>();
 
         for (Producto producto : productos.values()) {
-            lineas.add(descomponeObjeto(producto));
+            lineas.add(descomponeProducto(producto));
         }
 
         return lineas;
@@ -50,7 +50,7 @@ public abstract class ProductoFactory {
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Producto con los datos dados.
      */
-    public abstract Producto fabricaObjeto(String[] datos);
+    public abstract Producto fabricaProducto(String[] datos);
 
     /**
      * Método que a partir de una instancia de Producto se encarga de 
@@ -58,5 +58,5 @@ public abstract class ProductoFactory {
      * @param producto la instancia de Producto
      * @return los datos del producto descompuestos en el formato de los archivos.
      */
-    public abstract String descomponeObjeto(Producto producto);
+    public abstract String descomponeProducto(Producto producto);
 }

@@ -15,7 +15,7 @@ public class ProductoFabricante extends ProductoFactory{
      * @param datos un arreglo de strings para abstraer los datos del objeto a fabricar.
      * @return una instancia de Producto con los datos dados.
      */
-    public ProductoConcreto fabricaObjeto(String[] datos){
+    public ProductoConcreto fabricaProducto(String[] datos){
         if(datos.length != 3){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
@@ -46,7 +46,7 @@ public class ProductoFabricante extends ProductoFactory{
      * @param objeto el objeto a descomponer.
      * @return una cadena que contiene los datos del objeto separados por comas.
      */
-    public String descomponeObjeto(Producto producto) {
+    public String descomponeProducto(Producto producto) {
 
         //Procedemos a extraer todos los datos del cliente.
         String codigo = String.valueOf(producto.getCodigo());

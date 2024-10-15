@@ -14,7 +14,7 @@ public class ClienteFabricante extends ClienteFactory{
      * @param datos el arreglo de cadenas de donde se van a obtener los datos.
      * @return una instancia de Cliente a partir de los datos dados.
      */
-    @Override public Cliente fabricaObjeto(String[] datos){
+    @Override public Cliente fabricaCliente(String[] datos){
         if(datos.length != 5){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
@@ -49,7 +49,7 @@ public class ClienteFabricante extends ClienteFactory{
      * @param objeto el objeto a descomponer.
      * @return una cadena que contiene los datos del objeto separados por comas.
      */
-    @Override public String descomponeObjeto(Cliente cliente) {
+    @Override public String descomponeCliente(Cliente cliente) {
     
         //Procedemos a extraer todos los datos del cliente.
         String nombre = cliente.getNombre();

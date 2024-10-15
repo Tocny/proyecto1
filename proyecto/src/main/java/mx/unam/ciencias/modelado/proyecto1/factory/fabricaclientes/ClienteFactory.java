@@ -23,7 +23,7 @@ public abstract class ClienteFactory {
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
-            Cliente cliente = fabricaObjeto(datos);
+            Cliente cliente = fabricaCliente(datos);
             clientes.put(cliente.getID(), cliente);
         }
         return clientes;
@@ -39,7 +39,7 @@ public abstract class ClienteFactory {
         List<String> lineas = new ArrayList<>();
 
         for (Cliente cliente : clientes.values()) {
-            lineas.add(descomponeObjeto(cliente));
+            lineas.add(descomponeCliente(cliente));
         }
 
         return lineas;
@@ -50,7 +50,7 @@ public abstract class ClienteFactory {
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Cliente con los datos dados.
      */
-    public abstract Cliente fabricaObjeto(String[] datos);
+    public abstract Cliente fabricaCliente(String[] datos);
 
     /**
      * Método que a partir de una instancia de Cliente se encarga de 
@@ -58,5 +58,5 @@ public abstract class ClienteFactory {
      * @param cliente la instancia de Cliente
      * @return los datos del cliente descompuestos en el formato de los archivos.
      */
-    public abstract String descomponeObjeto(Cliente cliente);
+    public abstract String descomponeCliente(Cliente cliente);
 }
