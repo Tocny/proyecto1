@@ -66,9 +66,29 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
 
     /**
      * Getter de un producto del diccionario de productos.
+     * @param codigo un codigo asociado al producto.
+     * @return un producto del iterable "productos".
      */
     @Override public Producto getProducto(String codigo){
         return productos.getProducto(codigo);
+    }
+
+
+    /**
+     * Getter de un iterable de clientes.
+     * @return una instancia de ClienteIterable.
+     */
+    public ClienteIterable getClientes(){
+        return clientes;
+    }
+
+    /**
+     * Getter de un cliente.
+     * @param codigo una cadena codigo (usuario) asociado a un cliente en el iterable.
+     * @return una instancia de Cliente contenida en el iterable de clientes.
+     */
+    public Cliente getClientes(String codigo){
+        return clientes.getCliente(codigo);
     }
 
 }

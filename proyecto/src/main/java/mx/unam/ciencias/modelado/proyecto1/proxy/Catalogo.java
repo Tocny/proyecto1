@@ -1,6 +1,8 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public interface Catalogo{
 
     /**
      * Getter del catalogo de productos.
-     * @return una lista de productos.
+     * @return un iterable de productos.
      */
     public ProductoIterable getProductos();
 
@@ -21,5 +23,18 @@ public interface Catalogo{
      * @return una instancia de producto, que deberá estar contenida en el catalogo.
      */
     public Producto getProducto(String codigo);
+
+    /**
+     * Getter de un iterable de clientes.
+     * @return una instancia de ClienteIterable.
+     */
+    public ClienteIterable getClientes();
+
+    /**
+     * Getter de un cliente.
+     * @param codigo una cadena codigo (usuario) asociado a un cliente en el iterable.
+     * @return una instancia de Cliente contenida en el iterable de clientes.
+     */
+    public Cliente getClientes(String codigo);
 
 }
