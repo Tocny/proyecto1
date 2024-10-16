@@ -1,10 +1,9 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
-import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
-import java.util.Map;
 
 /**
  * Interfaz para el catalogo (proxy) de la tienda.
@@ -35,6 +34,6 @@ public interface Catalogo{
      * @param codigo una cadena codigo (usuario) asociado a un cliente en el iterable.
      * @return una instancia de Cliente contenida en el iterable de clientes.
      */
-    public Cliente getClientes(String codigo);
+    public ClienteObservador getCliente(String codigo);
 
 }

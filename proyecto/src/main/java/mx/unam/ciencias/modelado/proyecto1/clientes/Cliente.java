@@ -31,7 +31,7 @@ public class Cliente implements ClienteObservador {
      * Getter del id.
      * @return id.
      */
-    public String getID() {
+    @Override public String getID() {
         return id;
     }
 
@@ -47,7 +47,7 @@ public class Cliente implements ClienteObservador {
      * Getter del nombre 
      * @return nombre.
      */
-    public String getNombre() {
+    @Override public String getNombre() {
         return nombre;
     }
 
@@ -63,7 +63,7 @@ public class Cliente implements ClienteObservador {
      * Getter de la cuenta bancaria del cliente.
      * @return cuentaBancaria.
      */
-    public CuentaBancaria getCuentaBancaria() {
+    @Override public CuentaBancaria getCuentaBancaria() {
         return cuentaBancaria;
     }
 
@@ -79,7 +79,7 @@ public class Cliente implements ClienteObservador {
      * Getter del pais.
      * @return pais.
      */
-    public Pais getPais() {
+    @Override public Pais getPais() {
         return pais;
     }
 

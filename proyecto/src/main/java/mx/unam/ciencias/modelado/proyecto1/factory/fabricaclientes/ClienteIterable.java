@@ -1,6 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
-import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,10 +10,10 @@ import java.lang.Iterable;
  * Clase iterable para asociar identificadores de clientes con objetos Cliente.
  * Sobrecarga los métodos de un HashMap del JDK.
  */
-public class ClienteIterable implements Iterable<Map.Entry<String, Cliente>>{
+public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObservador>>{
 
     /** Diccionario que asocia identificadores de clientes con objetos Cliente. */
-    private Map<String, Cliente> diccionario;
+    private Map<String, ClienteObservador> diccionario;
 
     /** Constructor de la clase, inicializa el diccionario. */
     public ClienteIterable(){
@@ -25,8 +25,16 @@ public class ClienteIterable implements Iterable<Map.Entry<String, Cliente>>{
      * @param identificador el identificador del cliente.
      * @param cliente el cliente a agregar.
      */
-    public void agregar(Cliente cliente){
+    public void agregar(ClienteObservador cliente){
         diccionario.put(cliente.getCuentaBancaria().getUsuario(), cliente);
+    }
+
+    /**
+     * Método eliminar que elimina un cliente del diccionario.
+     * @param cliente un cliente a eliminar
+     */
+    public void eliminar(ClienteObservador cliente) {
+        diccionario.remove(cliente.getCuentaBancaria().getUsuario());
     }
 
     /**
@@ -34,7 +42,7 @@ public class ClienteIterable implements Iterable<Map.Entry<String, Cliente>>{
      * @param identificador el identificador del cliente.
      * @return el cliente asociado al identificador.
      */
-    public Cliente getCliente(String identificador){
+    public ClienteObservador getCliente(String identificador){
         return diccionario.get(identificador);
     }
 
@@ -51,7 +59,7 @@ public class ClienteIterable implements Iterable<Map.Entry<String, Cliente>>{
      * Implementación concreta del método de la interfaz Iterable.
      * @return una instancia de ClienteIterator sobre el diccionario local.
      */
-    @Override public Iterator<Map.Entry<String, Cliente>> iterator(){
+    @Override public Iterator<Map.Entry<String, ClienteObservador>> iterator(){
         return new ClienteIterator(diccionario);
     }
 }
