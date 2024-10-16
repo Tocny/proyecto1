@@ -2,6 +2,56 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
+
+public class CatalogoProxy implements Catalogo{
+
+    /**Instancia de catalogo que será nuestro servidor. */
+    private Catalogo servidor;
+
+    /**
+     * Constructor de la clase, asigna el servidor.
+     * @param servidor una implementación de catalogo.
+     */
+    public CatalogoProxy(Catalogo servidor){
+        this.servidor = servidor;
+        System.out.println("Conexión establecida.");
+    }
+
+    /**
+     * Implementación del getter de productos.
+     * @return el método getProductos del servidor.
+     */
+    @Override public ProductoIterable getProductos(){
+        return servidor.getProductos();
+    }
+
+    /**
+     * Implementación del getter de un producto.
+     * @return el método getproducto del servidor.
+     */
+    @Override public Producto getProducto(String codigo){
+        return servidor.getProducto(codigo);
+    }
+
+    /**
+     * Implementación del método getClientes.
+     * @return el método getClientes() del servidor.
+     */
+    @Override public ClienteIterable getClientes(){
+        return servidor.getClientes();
+    }
+
+    /**
+     * Implementación del método getcliente.
+     * @return el método getCliente() del servidor.
+     */
+    @Override public ClienteObservador getCliente(String codigo){
+        return servidor.getCliente(codigo);
+    }
+
+
+}
 

@@ -39,14 +39,14 @@ public class SujetoOfertas implements Sujeto{
      * @param oferta una cadena que representa una notificacion.
      * @param pais un pais, la notificación se enviará a los clientes de dicho pais.
      */
-    @Override public void notificaClientes(ProductoDecorator oferta, Pais pais, Departamento departamento){
+    @Override public void notificaClientes(String oferta, Pais pais){
 
         for (Map.Entry<String, ClienteObservador> entry : clientes) {
             String identificador = entry.getKey();
             ClienteObservador cliente = entry.getValue();
 
             if(cliente.getPais() == pais){
-                cliente.notificar(oferta.mensajeOferta(departamento));
+                cliente.notificar(oferta);
             }
 
         }
