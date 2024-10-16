@@ -1,11 +1,12 @@
 package mx.unam.ciencias.modelado.proyecto1.strategy.idioma;
 
+import mx.unam.ciencias.modelado.proyecto1.builder.Carrito;
+
 /** 
  * Interfaz para representar diferentes idiomas en el sistema.
  * Esta interfaz define los métodos que las clases concretas de idiomas
  * deben implementar para mostrar textos en diferentes lenguajes.
  */
-
 public interface Idioma {
 
     /**

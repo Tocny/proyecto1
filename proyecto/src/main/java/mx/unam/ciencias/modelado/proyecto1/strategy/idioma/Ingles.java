@@ -1,5 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.strategy.idioma;
 
+import mx.unam.ciencias.modelado.proyecto1.builder.Carrito;
+
 /** Clase que implementa el idioma en ingles. 
 * 
 */

@@ -1,12 +1,20 @@
+package mx.unam.ciencias.modelado.proyecto1.builder;
+
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
+import mx.unam.ciencias.modelado.proyecto1.clientes.*;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import java.util.List;
+import java.util.ArrayList;
+
 public class CarritoBuilderConcreto implements CarritoBuilder{
     List<Producto> productos;
-    Cliente cliente;
+    ClienteObservador cliente;
 
     /**
      * Constructor del CarritoConcreto
      * @param cliente
      */
-    public CarritoBuilderConcreto(Cliente cliente){
+    public CarritoBuilderConcreto(ClienteObservador cliente){
         this.cliente = cliente;
         this.productos = new ArrayList<>();
     }
@@ -14,7 +22,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
     /**
      * Metodo que agrega un producto a la lista del carrito
      */
-    public void agregarProducto(Producto producto){
+    @Override public void agregarProducto(Producto producto){
         productos.add(producto);
     }
 
@@ -22,7 +30,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
      * Metodo que elimina el producto indicado de la lista del carrito
      * @param producto
      */
-    public void eliminarProducto(Producto producto){
+    @Override public void eliminarProducto(Producto producto){
         productos.remove(producto);
     }
 
@@ -33,7 +41,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
      * @param departamento
      * @param descuento
      */
-    public void aplicarDescuentos(Departamento departamento, Pais pais, ProductoDecorator descuento){
+    @Override public void aplicarDescuentos(Departamento departamento, Pais pais, ProductoDecorator descuento){
         for (Producto producto : productos) {
             if(producto.getDepartamento() == departamento && cliente.getPais() == pais){
                 descuento.envolver(producto);
@@ -45,7 +53,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
      * Metodo que mediante el constructor de la clase Carrito, le pasa los parametros creados en el builder y crea un carrito
      * @return Carrito
      */
-    public Carrito buildCarrito(){
+    @Override public Carrito buildCarrito(){
         return new Carrito(productos, cliente);
     }
 }
