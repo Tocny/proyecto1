@@ -64,4 +64,10 @@ public abstract class ProductoDecorator implements Producto{
      * @return una instancia del producto recibido con el decorador especifico.
      */
     public abstract Producto envolver(Producto producto);
+
+    /**
+     * Método para lanzar un mensaje de oferta, es una breve descripción de la oferta.
+     * @return cadena que describe la oferta.
+     */
+    public abstract String mensajeOferta(Departamento departamento);
 }

@@ -1,6 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.observer;
 
 import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 
 /**
  * Interfaz sujeto del patrón observer.
@@ -25,6 +26,6 @@ public interface Sujeto{
      * @param oferta una oferta para los clientes del sitio.
      * @param pais un pais sobre el cual se notificará a los usuarios de dicho pais.
      */
-    public void notificaClientes(String oferta, Pais pais);
+    public void notificaClientes(ProductoDecorator oferta, Pais pais, Departamento departamento);
 
 }
