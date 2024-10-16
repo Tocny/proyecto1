@@ -1,3 +1,5 @@
+package mx.unam.ciencias.modelado.proyecto1.menus;
+
 import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;

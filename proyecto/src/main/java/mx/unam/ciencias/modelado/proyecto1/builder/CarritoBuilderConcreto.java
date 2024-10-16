@@ -31,7 +31,11 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
      * @param producto
      */
     @Override public void eliminarProducto(Producto producto){
-        productos.remove(producto);
+        boolean removed = productos.remove(producto);
+    
+        if (!removed) {
+            throw new IllegalArgumentException("El producto '" + producto.getNombre() + "' no está en el carrito.");
+        }
     }
 
     /**

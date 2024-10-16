@@ -2,51 +2,94 @@ package mx.unam.ciencias.modelado.proyecto1.strategy.idioma;
 
 import mx.unam.ciencias.modelado.proyecto1.builder.Carrito;
 
-/** Clase que implementa el idioma en portugues. 
-* 
-*/
+/** 
+ * Clase que implementa el idioma en portugués. 
+ */
 public class Portugues implements Idioma {
 
     /**
-     * Muestra el catalogo de productos en portugues.
-     * @return Una cadena con la frase "Catalogo de produtos:".
+     * Método que organiza una cadena completa en base a los demás métodos de opciones.
+     * @return una cadena con el menú completo.
      */
-
-    @Override
-    public String menuCatalogo() {
-        return "Catalogo de produtos:";
+    @Override public String menuCatalogo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("----- Menu do Catálogo -----\n");
+        sb.append("1. ").append(opcionVerCatalogo()).append("\n");
+        sb.append("2. ").append(opcionAgregarAlCarrito()).append("\n");
+        sb.append("3. ").append(opcionEliminarDelCarrito()).append("\n");
+        sb.append("4. ").append(opcionCerrarSesion()).append("\n");
+        sb.append("5. ").append(opcionSalir()).append("\n");
+        return sb.toString();
     }
 
     /**
-     * Muestra un saludo en portugues que se muestra despues de iniciar sesion.
-     * @return Una cadena con la frase "Bem-vindo!".
+     * Método para un saludo.
+     * @return Saludo en portugués.
      */
-
-    @Override
-    public String saludo() {
+    @Override public String saludo() {
         return "Bem-vindo!";
     }
 
     /**
-     * Muestra el contenido del ticket en portugues, dando los dias de espera antes de llegaday el contenido del carrito de compra.
-     * @param dias El numero de dias que tardaran en llegar los productos.
-     * @param compra El carrito de compras con los productos adquiridos.
-     * @return Una cadena con los detalles del ticket, incluyendo dias de garantia y productos en el carrito.
+     * Método para construir una cadena que funje como ticket de compra.
+     * @param compra un carrito de compra.
+     * @param dias los días que tardará en entregarse el pedido.
+     * @return el ticket en portugués.
      */
-
-    @Override
-    public String ticket(int dias, Carrito compra) {
-        return "Itens no seu ticket:\n" +compra+ "\nDias de chegada: " + dias;
+    @Override public String ticket(int dias, Carrito compra) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Produtos no seu ticket:\n");
+        sb.append(compra.recibo());
+        sb.append("Total a pagar: ").append(compra.calculaTotal()).append(" $").append("\n");
+        sb.append("Tempo de entrega: ").append(dias).append(" dias.");
+        return sb.toString();
     }
 
     /**
-     * Muestra un mensaje de despedida en portugues que se muestra despues de cerrar sesion.
-     * @return Una cadena con la frase "Obrigado pela sua visita, ate logo!".
+     * Método para una despedida.
+     * @return despedida en portugués.
      */
-
-    @Override
-    public String despedida() {
-        return "Obrigado pela sua visita, ate logo!";
+    @Override public String despedida() {
+        return "Obrigado pela sua visita, até breve!";
     }
 
+    /**
+     * Método para la opción que corresponde a ver el catalogo de productos.
+     * @return Mensaje en portugués.
+     */
+    @Override public String opcionVerCatalogo() {
+        return "Ver catálogo de produtos.";
+    }
+
+    /**
+     * Método para la opción de agregar productos al carro.
+     * @return Mensaje en portugués.
+     */
+    @Override public String opcionAgregarAlCarrito() {
+        return "Adicionar produto ao carrinho.";
+    }
+
+    /**
+     * Método para la opcion de eliminar productos del carro.
+     * @return Mensaje en portugués.
+     */
+    @Override public String opcionEliminarDelCarrito() {
+        return "Remover produto do carrinho.";
+    }
+
+    /**
+     * Método para la opción de cerrar la sesión.
+     * @return Mensaje en portugués.
+     */
+    @Override public String opcionCerrarSesion() {
+        return "Sair da sessão.";
+    }
+
+    /**
+     * Método para la opcion de salir de la tienda.
+     * @return Mensaje en portugués
+     */
+    @Override public String opcionSalir() {
+        return "Sair.";
+    }
 }
