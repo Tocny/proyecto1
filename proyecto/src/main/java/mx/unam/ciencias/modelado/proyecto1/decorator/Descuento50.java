@@ -39,4 +39,13 @@ public class Descuento50 extends ProductoDecorator {
     @Override public Producto envolver(Producto producto){
         return new Descuento50(producto);
     }
+
+    /**
+     * Método para lanzar un mensaje de oferta, es una breve descripción de la oferta.
+     * @param departamento el departamento de productos sobre los que se aplica la oferta.
+     * @return cadena que describe la oferta.
+     */
+    @Override public String mensajeOferta(Departamento departamento){
+        return "Oferta: 50% de descuento en productos: " + departamento.name();
+    }
 }

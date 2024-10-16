@@ -16,7 +16,7 @@ public class ProductoFabricante extends ProductoFactory{
      * @return una instancia de Producto con los datos dados.
      */
     public ProductoConcreto fabricaProducto(String[] datos){
-        if(datos.length != 3){
+        if(datos.length != 4){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
 

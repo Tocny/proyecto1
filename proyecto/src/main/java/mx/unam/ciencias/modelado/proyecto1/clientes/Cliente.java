@@ -1,9 +1,13 @@
 package mx.unam.ciencias.modelado.proyecto1.clientes;
 
 import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import java.io.Serializable;
 
 /**Clase Cliente para los consumidores del mercado. */
-public class Cliente implements ClienteObservador {
+public class Cliente implements ClienteObservador, Serializable {
+
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     /**Id del cliente. */
     private String id;
     /**Nombre del cliente. */
@@ -31,7 +35,7 @@ public class Cliente implements ClienteObservador {
      * Getter del id.
      * @return id.
      */
-    public String getID() {
+    @Override public String getID() {
         return id;
     }
 
@@ -47,7 +51,7 @@ public class Cliente implements ClienteObservador {
      * Getter del nombre 
      * @return nombre.
      */
-    public String getNombre() {
+    @Override public String getNombre() {
         return nombre;
     }
 
@@ -63,7 +67,7 @@ public class Cliente implements ClienteObservador {
      * Getter de la cuenta bancaria del cliente.
      * @return cuentaBancaria.
      */
-    public CuentaBancaria getCuentaBancaria() {
+    @Override public CuentaBancaria getCuentaBancaria() {
         return cuentaBancaria;
     }
 
@@ -79,7 +83,7 @@ public class Cliente implements ClienteObservador {
      * Getter del pais.
      * @return pais.
      */
-    public Pais getPais() {
+    @Override public Pais getPais() {
         return pais;
     }
 

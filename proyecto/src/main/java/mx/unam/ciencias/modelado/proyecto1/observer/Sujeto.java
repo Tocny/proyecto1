@@ -1,6 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.observer;
 
 import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 
 /**
  * Interfaz sujeto del patrón observer.

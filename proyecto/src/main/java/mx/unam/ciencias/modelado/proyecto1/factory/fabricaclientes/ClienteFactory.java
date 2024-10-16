@@ -1,10 +1,11 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Fabrica del patrón factory. Se encarga principalmente de generar un diccionario
@@ -18,13 +19,13 @@ public abstract class ClienteFactory {
      * @return un diccionario donde las claves son identificadores de cliente
      *         y los valores son las instancias de Cliente.
      */
-    public Map<String, Cliente> generaClientesDiccionario(List<String> lineas) {
-        Map<String, Cliente> clientes = new HashMap<>();
+    public ClienteIterable generaClientesDiccionario(List<String> lineas) {
+        ClienteIterable clientes = new ClienteIterable();
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
-            Cliente cliente = fabricaCliente(datos);
-            clientes.put(cliente.getID(), cliente);
+            ClienteObservador cliente = fabricaCliente(datos);
+            clientes.agregar(cliente);
         }
         return clientes;
     }
@@ -50,7 +51,7 @@ public abstract class ClienteFactory {
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Cliente con los datos dados.
      */
-    public abstract Cliente fabricaCliente(String[] datos);
+    public abstract ClienteObservador fabricaCliente(String[] datos);
 
     /**
      * Método que a partir de una instancia de Cliente se encarga de 
@@ -58,5 +59,5 @@ public abstract class ClienteFactory {
      * @param cliente la instancia de Cliente
      * @return los datos del cliente descompuestos en el formato de los archivos.
      */
-    public abstract String descomponeCliente(Cliente cliente);
+    public abstract String descomponeCliente(ClienteObservador cliente);
 }
