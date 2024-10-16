@@ -13,6 +13,8 @@ public class ClienteRemoto{
             Catalogo servidor = (Catalogo) Naming.lookup("rmi://127.0.0.1/CatalogoServidor");
             CatalogoProxy proxy = new CatalogoProxy(servidor);
             
+            proxy.getClientes().mostrar();
+            proxy.getProductos().mostrar();
 
             System.exit(0);
 
