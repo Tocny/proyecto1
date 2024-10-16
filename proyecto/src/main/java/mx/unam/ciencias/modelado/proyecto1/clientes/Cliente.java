@@ -1,9 +1,13 @@
 package mx.unam.ciencias.modelado.proyecto1.clientes;
 
 import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import java.io.Serializable;
 
 /**Clase Cliente para los consumidores del mercado. */
-public class Cliente implements ClienteObservador {
+public class Cliente implements ClienteObservador, Serializable {
+
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     /**Id del cliente. */
     private String id;
     /**Nombre del cliente. */

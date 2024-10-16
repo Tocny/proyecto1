@@ -20,23 +20,28 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     /**Instancia de la clase */
     private static CatalogoServidor instancia;
     /**Productos del catalogo. */
-    private ProductoIterable productos;
+    private static ProductoIterable productos;
     /**Clientes de nuestra base de datos. */
-    private ClienteIterable clientes;
+    private static ClienteIterable clientes;
 
     /**
      * Constructor de la clase, inicializa el diccionario de productos.
      * @throws RemoteException en caso de errores con el servidor remoto.
      */
     private CatalogoServidor() throws RemoteException{
-        List<String> lineasProductos = ReaderWriter.read("Productos.csv");
-        List<String> lineasClientes = ReaderWriter.read("Clientes.csv");
-        
-        ClienteFabricante fabricaClientes = new ClienteFabricante();
-        ProductoFabricante fabricaProductos = new ProductoFabricante();
-        
-        clientes = fabricaClientes.generaClientesDiccionario(lineasClientes);
-        productos = fabricaProductos.generaProductosDiccionario(lineasProductos);
+        try {
+            List<String> lineasProductos = ReaderWriter.read("data/Productos.csv");
+            List<String> lineasClientes = ReaderWriter.read("data/Clientes.csv");
+
+            ClienteFabricante fabricaClientes = new ClienteFabricante();
+            ProductoFabricante fabricaProductos = new ProductoFabricante();
+
+            clientes = fabricaClientes.generaClientesDiccionario(lineasClientes);
+            productos = fabricaProductos.generaProductosDiccionario(lineasProductos);
+
+        } catch (Exception e) {
+            System.out.println("Error al inicializar CatalogoServidor: " + e.getMessage());
+        }
 
     }
 
@@ -101,6 +106,8 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
             LocateRegistry.createRegistry(1099);
             Naming.rebind("rmi://localhost/CatalogoServidor", getInstancia());
             System.out.println("Servidor de CheemsMart registrado. Esperando clientes.");
+            productos.mostrar();
+            clientes.mostrar();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

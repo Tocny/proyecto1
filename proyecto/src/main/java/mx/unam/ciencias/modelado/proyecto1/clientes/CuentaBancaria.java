@@ -1,9 +1,13 @@
 package mx.unam.ciencias.modelado.proyecto1.clientes;
 
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.*;
+import java.io.Serializable;
 
 /**Clase para cuentas bancarias, cada cliente cuenta con una instancia de esta clase. */
-public class CuentaBancaria {
+public class CuentaBancaria implements Serializable{
+
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     /**Usuario de la cuenta bancaria. */
     private String usuario;
     /**Contraseña de la cuenta bancaria. */

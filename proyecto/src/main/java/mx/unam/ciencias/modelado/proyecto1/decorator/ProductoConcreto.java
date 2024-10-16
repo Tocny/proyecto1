@@ -1,9 +1,12 @@
 package mx.unam.ciencias.modelado.proyecto1.decorator;
 
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
+import java.io.Serializable;
 
-public class ProductoConcreto implements Producto{
+public class ProductoConcreto implements Producto, Serializable{
 
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     /**Codigo asociado al producto. */
     private String codigo;
     /**Nombre del producto. */

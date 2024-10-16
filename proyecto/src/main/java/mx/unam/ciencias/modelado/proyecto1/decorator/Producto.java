@@ -3,7 +3,7 @@ package mx.unam.ciencias.modelado.proyecto1.decorator;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 
 /**Interfaz para los productos de la tienda. */
-public interface Producto {
+public interface Producto{
 
     /**
      * Getter del precio base del producto, todos los productos tienen un precio sin ofertas y en dolares.
