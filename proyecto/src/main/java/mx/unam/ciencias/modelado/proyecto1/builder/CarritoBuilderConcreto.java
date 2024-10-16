@@ -44,7 +44,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
     @Override public void aplicarDescuentos(Departamento departamento, Pais pais, ProductoDecorator descuento){
         for (Producto producto : productos) {
             if(producto.getDepartamento() == departamento && cliente.getPais() == pais){
-                descuento.envolver(producto);
+                producto = descuento.envolver(producto);
             }
         }
     }

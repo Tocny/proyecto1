@@ -11,41 +11,54 @@ import java.io.Serializable;
  * Clase iterable para asociar identificadores de clientes con objetos Cliente.
  * Sobrecarga los métodos de un HashMap del JDK.
  */
-public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObservador>>, Serializable{
+public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObservador>>, Serializable {
 
-    /**Para objetos serializables. */
+    /** Para objetos serializables. */
     private static final long serialVersionUID = 1L;
     /** Diccionario que asocia identificadores de clientes con objetos Cliente. */
     private Map<String, ClienteObservador> diccionario;
 
     /** Constructor de la clase, inicializa el diccionario. */
-    public ClienteIterable(){
+    public ClienteIterable() {
         this.diccionario = new HashMap<>();
     }
 
     /**
      * Método que agrega un cliente al diccionario.
-     * @param identificador el identificador del cliente.
      * @param cliente el cliente a agregar.
+     * @throws IllegalArgumentException si el cliente ya está registrado.
      */
-    public void agregar(ClienteObservador cliente){
-        diccionario.put(cliente.getCuentaBancaria().getUsuario(), cliente);
+    public void agregar(ClienteObservador cliente) {
+        String identificador = cliente.getCuentaBancaria().getUsuario();
+        if (diccionario.containsKey(identificador)) {
+            throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' ya está registrado.");
+        }
+        diccionario.put(identificador, cliente);
     }
 
     /**
      * Método eliminar que elimina un cliente del diccionario.
-     * @param cliente un cliente a eliminar
+     * @param cliente el cliente a eliminar.
+     * @throws IllegalArgumentException si el cliente no existe en el diccionario.
      */
     public void eliminar(ClienteObservador cliente) {
-        diccionario.remove(cliente.getCuentaBancaria().getUsuario());
+        String identificador = cliente.getCuentaBancaria().getUsuario();
+        if (!diccionario.containsKey(identificador)) {
+            throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' no existe.");
+        }
+        diccionario.remove(identificador);
     }
 
     /**
      * Método para obtener un cliente a partir de su identificador.
      * @param identificador el identificador del cliente.
      * @return el cliente asociado al identificador.
+     * @throws IllegalArgumentException si el cliente no existe.
      */
-    public ClienteObservador getCliente(String identificador){
+    public ClienteObservador getCliente(String identificador) {
+        if (!diccionario.containsKey(identificador)) {
+            throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' no está registrado.");
+        }
         return diccionario.get(identificador);
     }
 
@@ -54,7 +67,7 @@ public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObserv
      * @param identificador el identificador del cliente a verificar.
      * @return true si el cliente está en el diccionario, false de lo contrario.
      */
-    public boolean contieneCliente(String identificador){
+    public boolean contieneCliente(String identificador) {
         return diccionario.containsKey(identificador);
     }
 
@@ -62,7 +75,7 @@ public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObserv
      * Implementación concreta del método de la interfaz Iterable.
      * @return una instancia de ClienteIterator sobre el diccionario local.
      */
-    @Override public Iterator<Map.Entry<String, ClienteObservador>> iterator(){
+    @Override public Iterator<Map.Entry<String, ClienteObservador>> iterator() {
         return new ClienteIterator(diccionario);
     }
 

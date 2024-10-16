@@ -45,21 +45,29 @@ public class Carrito {
      * @return recibo de compra
      */
     public String recibo(){
-
         Moneda divisa = cliente.getCuentaBancaria().getMoneda();
-
-        StringBuilder recibo = new StringBuilder("RECIBO DE COMPRA:\n");
+        StringBuilder recibo = new StringBuilder();
         double totalBase = 0;
         double total = 0;
         for (Producto producto : productos) {
-            recibo.append(producto.getNombre()).append(" - Precio Base: ").append(producto.getPrecioBase()).append(" - Precio c/ descuento: ").append(producto.getPrecio(divisa)).append("\n");
-            total += producto.getPrecio(divisa);
-            total += producto.getPrecioBase();
+            recibo.append(producto.descripcion(divisa)).append("\n");
         }
-        double ahorro = totalBase - total;
-        recibo.append("Total: ").append(totalBase).append(" - Total con descuento: ").append(total).append("\n");
-        recibo.append("Ahorraste ").append(ahorro).append("!!!");
 
         return recibo.toString();
+    }
+
+    /**
+     * Método que calcula el total de precios de los productos en el carrito.
+     * @return el total de los precios considerando la divisa del cliente
+     */
+    public double calculaTotal() {
+        Moneda divisa = cliente.getCuentaBancaria().getMoneda();
+        double total = 0;
+        
+        for (Producto producto : productos) {
+            total += producto.getPrecio(divisa);  // Sumar el precio de cada producto ajustado a la divisa
+        }
+        
+        return total;
     }
 }
