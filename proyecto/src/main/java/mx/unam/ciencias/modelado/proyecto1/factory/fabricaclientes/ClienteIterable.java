@@ -25,8 +25,8 @@ public class ClienteIterable implements Iterable<Map.Entry<String, Cliente>>{
      * @param identificador el identificador del cliente.
      * @param cliente el cliente a agregar.
      */
-    public void agregar(String identificador, Cliente cliente){
-        diccionario.put(identificador, cliente);
+    public void agregar(Cliente cliente){
+        diccionario.put(cliente.getCuentaBancaria().getUsuario(), cliente);
     }
 
     /**

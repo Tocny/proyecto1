@@ -2,7 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
-import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteFabricante;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.*;
 import mx.unam.ciencias.modelado.proyecto1.common.ReaderWriter; 
 import java.rmi.RemoteException;
@@ -23,11 +23,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     /**Productos del catalogo. */
     private ProductoIterable productos;
     /**Clientes de nuestra base de datos. */
-    private Map<String, Cliente> clientes;
-    /**Fabrica de clientes. */
-    private ClienteFabricante fabricaClientes;
-    /**Fabrica de productos */
-    private ProductoFabricante fabricaProductos;
+    private ClienteIterable clientes;
 
     /**
      * Constructor de la clase, inicializa el diccionario de productos.
@@ -37,8 +33,8 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
         List<String> lineasProductos = ReaderWriter.read("Productos.csv");
         List<String> lineasClientes = ReaderWriter.read("Clientes.csv");
         
-        fabricaClientes = new ClienteFabricante();
-        fabricaProductos = new ProductoFabricante();
+        ClienteFabricante fabricaClientes = new ClienteFabricante();
+        ProductoFabricante fabricaProductos = new ProductoFabricante();
         
         clientes = fabricaClientes.generaClientesDiccionario(lineasClientes);
         productos = fabricaProductos.generaProductosDiccionario(lineasProductos);
@@ -64,7 +60,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      * Getter del diccionario de productos.
      * @return productos.
      */
-    @Override public Map<String, Producto> getProductos(){
+    @Override public ProductoIterable getProductos(){
         return productos;
     }
 
@@ -72,7 +68,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      * Getter de un producto del diccionario de productos.
      */
     @Override public Producto getProducto(String codigo){
-        return (Producto) productos.get(codigo);
+        return productos.getProducto(codigo);
     }
 
 }

@@ -1,6 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.util.Map;
 
 /**
@@ -12,7 +13,7 @@ public interface Catalogo{
      * Getter del catalogo de productos.
      * @return una lista de productos.
      */
-    public Map<String, Producto> getProductos();
+    public ProductoIterable getProductos();
 
     /**
      * Getter de un producto, dado su codigo.

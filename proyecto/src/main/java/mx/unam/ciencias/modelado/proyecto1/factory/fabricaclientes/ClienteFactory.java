@@ -18,13 +18,13 @@ public abstract class ClienteFactory {
      * @return un diccionario donde las claves son identificadores de cliente
      *         y los valores son las instancias de Cliente.
      */
-    public Map<String, Cliente> generaClientesDiccionario(List<String> lineas) {
-        Map<String, Cliente> clientes = new HashMap<>();
+    public ClienteIterable generaClientesDiccionario(List<String> lineas) {
+        ClienteIterable clientes = new ClienteIterable();
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
             Cliente cliente = fabricaCliente(datos);
-            clientes.put(cliente.getID(), cliente);
+            clientes.agregar(cliente);
         }
         return clientes;
     }
