@@ -61,7 +61,7 @@ public class MenuCatalogo {
     /**
      * Método para mostrar el menú del catálogo y gestionar las acciones del usuario.
      */
-    private void mostrarMenu() {
+    public void mostrarMenu() {
         boolean salir = false;
 
         while (!salir) {
@@ -101,8 +101,8 @@ public class MenuCatalogo {
      * Método para agregar un producto al carrito.
      */
     private void agregarProductoAlCarrito() {
-        String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a agregar:", "ID inválido, intente nuevamente."); // Asumiendo que existe un método para obtener el ID máximo
-        Producto producto = catalogo.getProducto(codigoProducto); // Suponiendo que hay un método buscarPorId en ProductoIterable
+        String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a agregar:", "ID inválido, intente nuevamente."); 
+        Producto producto = catalogo.getProducto(codigoProducto);
         if (producto != null) {
             armadorCarro.agregarProducto(producto);
             System.out.println("Producto agregado al carrito.");
@@ -115,9 +115,9 @@ public class MenuCatalogo {
      * Método para eliminar un producto del carrito.
      */
     private void eliminarProductoDelCarrito() {
-        String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a eliminar:", "ID inválido, intente nuevamente."); // Suponiendo que existe un método para obtener el ID máximo
+        String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a eliminar:", "ID inválido, intente nuevamente."); 
         Producto eliminado = catalogo.getProducto(codigoProducto);
-        armadorCarro.eliminarProducto(eliminado); // Suponiendo que hay un método eliminarProducto en CarritoBuilder
+        armadorCarro.eliminarProducto(eliminado); 
         System.out.println("Producto eliminado del carrito.");
     }
 
@@ -126,6 +126,5 @@ public class MenuCatalogo {
      */
     private void cerrarSesion() {
         System.out.println("Cerrando sesión de " + cliente.getNombre() + "...");
-        // Aquí se pueden realizar otras acciones necesarias al cerrar sesión
     }
 }

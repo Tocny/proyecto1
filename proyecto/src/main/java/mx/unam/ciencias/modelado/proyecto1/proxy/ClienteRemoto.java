@@ -1,5 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
+import mx.unam.ciencias.modelado.proyecto1.menus.*;
+import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.rmi.RemoteException;
 import java.rmi.Naming;
 
@@ -15,6 +17,16 @@ public class ClienteRemoto{
             
             proxy.getClientes().mostrar();
             proxy.getProductos().mostrar();
+
+            MenuCliente menuCliente = new MenuCliente(proxy.getClientes());
+            ClienteObservador cliente = menuCliente.iniciar();
+
+            MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente);
+
+            menuCatalogo.mostrarMenu();
+
+
+
 
             System.exit(0);
 
