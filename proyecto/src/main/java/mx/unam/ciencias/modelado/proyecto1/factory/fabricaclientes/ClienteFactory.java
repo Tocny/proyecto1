@@ -36,10 +36,10 @@ public abstract class ClienteFactory {
      * @param clientes el diccionario de clientes que queremos descomponer.
      * @return una lista de cadenas que corresponde a los clientes descompuestos.
      */
-    public List<String> generaListaCadenas(Map<String, Cliente> clientes) {
+    public List<String> generaListaCadenas(ClienteIterable clientes) {
         List<String> lineas = new ArrayList<>();
 
-        for (Cliente cliente : clientes.values()) {
+        for (ClienteObservador cliente : clientes) {
             lineas.add(descomponeCliente(cliente));
         }
 

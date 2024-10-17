@@ -8,14 +8,15 @@ import java.lang.Iterable;
 import java.io.Serializable;
 
 /**
- * Clase iterable para asociar identificadores de clientes con objetos Cliente.
+ * Clase iterable para asociar identificadores de clientes con objetos ClienteObservador.
  * Sobrecarga los métodos de un HashMap del JDK.
  */
-public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObservador>>, Serializable {
+public class ClienteIterable implements Iterable<ClienteObservador>, Serializable {
 
     /** Para objetos serializables. */
     private static final long serialVersionUID = 1L;
-    /** Diccionario que asocia identificadores de clientes con objetos Cliente. */
+    
+    /** Diccionario que asocia identificadores de clientes con objetos ClienteObservador. */
     private Map<String, ClienteObservador> diccionario;
 
     /** Constructor de la clase, inicializa el diccionario. */
@@ -75,12 +76,13 @@ public class ClienteIterable implements Iterable<Map.Entry<String, ClienteObserv
      * Implementación concreta del método de la interfaz Iterable.
      * @return una instancia de ClienteIterator sobre el diccionario local.
      */
-    @Override public Iterator<Map.Entry<String, ClienteObservador>> iterator() {
+    @Override
+    public Iterator<ClienteObservador> iterator() {
         return new ClienteIterator(diccionario);
     }
 
     /**
-     * Método para mostrar los nombres de todos los productos.
+     * Método para mostrar los nombres de todos los clientes.
      */
     public void mostrar() {
         for (ClienteObservador cliente : diccionario.values()) {
