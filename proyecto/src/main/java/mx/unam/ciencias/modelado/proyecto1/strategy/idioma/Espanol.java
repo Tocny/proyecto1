@@ -17,8 +17,10 @@ public class Espanol implements Idioma {
         sb.append("1. ").append(opcionVerCatalogo()).append("\n");
         sb.append("2. ").append(opcionAgregarAlCarrito()).append("\n");
         sb.append("3. ").append(opcionEliminarDelCarrito()).append("\n");
-        sb.append("4. ").append(opcionCerrarSesion()).append("\n");
-        sb.append("5. ").append(opcionSalir()).append("\n");
+        sb.append("4. ").append(opcionVerCarrito()).append("\n");
+        sb.append("5. ").append(opcionProcederAlPago()).append("\n");
+        sb.append("6. ").append(opcionCerrarSesion()).append("\n");
+        sb.append("7. ").append(opcionSalir()).append("\n");
         return sb.toString();
     }
 
@@ -75,6 +77,22 @@ public class Espanol implements Idioma {
      */
     @Override public String opcionEliminarDelCarrito() {
         return "Eliminar producto del carrito.";
+    }
+
+    /**
+     * Método para la opción de proceder con el pago de los productos.
+     * @return Mensaje en español.
+     */
+    @Override public String opcionProcederAlPago() {
+        return "Proceder al pago.";
+    }
+
+    /**
+     * Método para la opción de ver los productos del carrito.
+     * @return Mensaje en español.
+     */
+    @Override public String opcionVerCarrito() {
+        return "Ver carrito de compra.";
     }
 
     /**

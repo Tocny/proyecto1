@@ -40,29 +40,41 @@ public interface Idioma {
      * Muestra la opción para ver el catálogo de productos.
      * @return Una cadena con la opción correspondiente.
      */
-    String opcionVerCatalogo();
+    public String opcionVerCatalogo();
 
     /**
      * Muestra la opción para agregar un producto al carrito.
      * @return Una cadena con la opción correspondiente.
      */
-    String opcionAgregarAlCarrito();
+    public String opcionAgregarAlCarrito();
 
     /**
      * Muestra la opción para eliminar un producto del carrito.
      * @return Una cadena con la opción correspondiente.
      */
-    String opcionEliminarDelCarrito();
+    public String opcionEliminarDelCarrito();
+
+    /**
+     * Muestra la opcion para proceder con el pago de los productos.
+     * @return Una cadena con la opción correspondiente.
+     */
+    public String opcionProcederAlPago();
+
+    /**
+     * Muestra la opcion para ver los productos del carrito.
+     * @return Una cadena con la opción correspondiente.
+     */
+    public String opcionVerCarrito();
 
     /**
      * Muestra la opción para cerrar sesión.
      * @return Una cadena con la opción correspondiente.
      */
-    String opcionCerrarSesion();
+    public String opcionCerrarSesion();
 
     /**
      * Muestra la opción para salir.
      * @return Una cadena con la opción correspondiente.
      */
-    String opcionSalir();
+    public String opcionSalir();
 }

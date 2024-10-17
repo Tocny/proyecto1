@@ -37,7 +37,6 @@ public class MenuCatalogo {
         this.idioma = determinaIdioma(cliente.getPais());
         this.armadorCarro = new CarritoBuilderConcreto(cliente);
         System.out.println(idioma.saludo());
-        mostrarMenu();
     }
 
     /**
@@ -62,11 +61,10 @@ public class MenuCatalogo {
      * Método para mostrar el menú del catálogo y gestionar las acciones del usuario.
      */
     public void mostrarMenu() {
-        boolean salir = false;
 
-        while (!salir) {
+        while (true) {
             System.out.println(idioma.menuCatalogo());
-            int opcion = MetodosGet.getInt("Seleccione una opción:", "Opción inválida, intente nuevamente.", 1, 5);
+            int opcion = MetodosGet.getInt("Seleccione una opción:", "Opción inválida, intente nuevamente.", 1, 7);
 
             switch (opcion) {
                 case 1:
@@ -79,13 +77,17 @@ public class MenuCatalogo {
                     eliminarProductoDelCarrito();
                     break;
                 case 4:
-                    cerrarSesion();
-                    salir = true;
+                    verCarrito();
                     break;
                 case 5:
-                    System.out.println(idioma.despedida());
-                    salir = true;
+                    procederAlPago();
                     break;
+                case 6:
+                    cerrarSesion();
+                    return;
+                case 7:
+                    System.out.println(idioma.despedida());
+                    return;
             }
         }
     }
@@ -94,7 +96,9 @@ public class MenuCatalogo {
      * Método para mostrar el catálogo de productos.
      */
     private void mostrarCatalogo() {
-        catalogo.mostrar();
+        for(Producto producto: catalogo){
+            System.out.println(producto.descripcion(divisa));
+        }
     }
 
     /**
@@ -117,8 +121,38 @@ public class MenuCatalogo {
     private void eliminarProductoDelCarrito() {
         String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a eliminar:", "ID inválido, intente nuevamente."); 
         Producto eliminado = catalogo.getProducto(codigoProducto);
-        armadorCarro.eliminarProducto(eliminado); 
+        try{
+            armadorCarro.eliminarProducto(eliminado); 
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return;
+        }
         System.out.println("Producto eliminado del carrito.");
+    }
+
+    /**Método para ver los productos del carrito. */
+    private void verCarrito(){
+        Carrito carritoBuffer = armadorCarro.buildCarrito();
+
+        System.out.println("\n" + carritoBuffer.recibo());
+        System.out.println(carritoBuffer.calculaTotal());
+    }
+
+    private void procederAlPago(){
+        Carrito carrito = armadorCarro.buildCarrito();
+
+        double cobro = carrito.calculaTotal();
+        int dias = (int) (Math.random() * 10);
+        
+        try{
+            cliente.getCuentaBancaria().retirar(cobro);
+        }catch(IllegalStateException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        System.out.println(idioma.ticket(dias, carrito));
+
     }
 
     /**
@@ -127,4 +161,5 @@ public class MenuCatalogo {
     private void cerrarSesion() {
         System.out.println("Cerrando sesión de " + cliente.getNombre() + "...");
     }
+
 }

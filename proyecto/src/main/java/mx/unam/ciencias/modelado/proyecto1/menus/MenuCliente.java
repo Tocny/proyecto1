@@ -6,6 +6,7 @@ import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
 
 public class MenuCliente {
 
+    /**Un objeto iterable de los clientes. */
     private ClienteIterable clientes;
 
     /**
@@ -17,7 +18,8 @@ public class MenuCliente {
     }
 
     /**
-     * Método para mostrar el menú
+     * Método para mostrar el menú.
+     * @return el cliente que inicia sesión o null si se selecciona salir.
      */
     public ClienteObservador iniciar() {
         ClienteObservador cliente = null;
@@ -45,8 +47,8 @@ public class MenuCliente {
     }
 
     /**
-     * Método para iniciar sesión, regresa un cliente.
-     * @return una instancia de ClienteObservador, sobre la cual se va a proceder al menu.
+     * Método para iniciar sesión, regresa un cliente si las credenciales son válidas.
+     * @return una instancia de ClienteObservador o null si no se encuentra el cliente o las credenciales no son válidas.
      */
     private ClienteObservador iniciarSesion() {
         while (true) { // Bucle infinito hasta que el usuario inicie sesión o decida salir
@@ -58,9 +60,18 @@ public class MenuCliente {
                 return null;  // Regresa null para indicar que se ha salido
             }
 
+            String contrasena = MetodosGet.getString("Enter your password: ", "Password cannot be empty.");
+
             try {
                 ClienteObservador cliente = clientes.getCliente(usuario);
-                return cliente;  // Regresa la instancia del cliente
+                
+                // Verificar las credenciales del cliente usando el método de la interfaz
+                if (cliente.validarCredenciales(usuario, contrasena)) {
+                    return cliente;  // Regresa la instancia del cliente si las credenciales son correctas
+                } else {
+                    System.out.println("Invalid credentials. Please try again.");
+                }
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

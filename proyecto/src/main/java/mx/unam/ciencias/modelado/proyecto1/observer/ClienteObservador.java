@@ -12,29 +12,38 @@ public interface ClienteObservador {
      * Método getter para obtener el ID del cliente.
      * @return el ID del cliente.
      */
-    String getID();
+    public String getID();
 
     /**
      * Método getter para obtener el nombre del cliente.
      * @return el nombre del cliente.
      */
-    String getNombre();
+    public String getNombre();
 
     /**
      * Método getter para obtener la cuenta bancaria del cliente.
      * @return la cuenta bancaria del cliente.
      */
-    CuentaBancaria getCuentaBancaria();
+    public CuentaBancaria getCuentaBancaria();
 
     /**
      * Método getter para obtener el país del cliente.
      * @return el país del cliente.
      */
-    Pais getPais();
+    public Pais getPais();
+
+    /**
+     * Método para validar las credenciales del cliente.
+     * @param usuario un usuario.
+     * @param contrasena la contrasena de la cuenta.
+     * @return si es que los parámetros nos dan el acceso a la cuenta.
+     */
+    public boolean validarCredenciales(String usuario, String contrasena);
 
     /**
      * Método para notificar al cliente sobre una oferta.
      * @param oferta la oferta que se notificará al cliente.
      */
-    void notificar(String oferta);
+    public void notificar(String oferta);
+
 }

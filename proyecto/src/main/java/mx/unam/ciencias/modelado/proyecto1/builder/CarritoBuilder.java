@@ -32,10 +32,9 @@ public interface CarritoBuilder {
      * en el que se encuentra el cliente, y el descuento especificado.
      *
      * @param departamento el Departamento al que pertenece el producto para determinar si se aplican descuentos.
-     * @param pais el Pais del cliente para aplicar descuentos geolocalizados.
      * @param descuento el ProductoDecorator que encapsula las reglas del descuento a aplicar.
      */
-    public void aplicarDescuentos(Departamento departamento, Pais pais, ProductoDecorator descuento);
+    public void aplicarDescuentos(Departamento departamento, ProductoDecorator descuento);
 
     /**
      * Construye y retorna el objeto final del carrito con los productos agregados y los descuentos aplicados.

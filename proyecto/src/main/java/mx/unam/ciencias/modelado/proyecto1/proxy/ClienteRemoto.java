@@ -15,17 +15,19 @@ public class ClienteRemoto{
             Catalogo servidor = (Catalogo) Naming.lookup("rmi://127.0.0.1/CatalogoServidor");
             CatalogoProxy proxy = new CatalogoProxy(servidor);
             
-            proxy.getClientes().mostrar();
-            proxy.getProductos().mostrar();
-
+            
             MenuCliente menuCliente = new MenuCliente(proxy.getClientes());
-            ClienteObservador cliente = menuCliente.iniciar();
 
-            MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente);
+            while(true){
+                ClienteObservador cliente = menuCliente.iniciar();
 
-            menuCatalogo.mostrarMenu();
+                if(cliente == null){
+                    break;
+                }
 
-
+                MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente);
+                menuCatalogo.mostrarMenu();
+            }
 
 
             System.exit(0);

@@ -53,6 +53,7 @@ public class Carrito {
             recibo.append(producto.descripcion(divisa)).append("\n");
         }
 
+
         return recibo.toString();
     }
 

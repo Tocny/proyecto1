@@ -129,10 +129,11 @@ public class CuentaBancaria implements Serializable{
      * @param cantidad la cantidad que se va a retirar.
      */
     public void retirar(double cantidad) {
-        if (cantidad <= saldo) {
-            this.saldo -= Math.abs(cantidad);
-        } else {
-            System.out.println("Fondos insuficientes");
+
+        if (cantidad > saldo) {
+            throw new IllegalStateException("Fondos insuficientes para realizar el retiro.");
         }
+        
+        this.saldo -= Math.abs(cantidad);
     }
 }
