@@ -5,6 +5,8 @@ import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
+import java.rmi.RemoteException;
+
 
 public class CatalogoProxy implements Catalogo{
 
@@ -24,7 +26,7 @@ public class CatalogoProxy implements Catalogo{
      * Implementación del getter de productos.
      * @return el método getProductos del servidor.
      */
-    @Override public ProductoIterable getProductos(){
+    @Override public ProductoIterable getProductos() throws RemoteException{
         return servidor.getProductos();
     }
 
@@ -32,7 +34,7 @@ public class CatalogoProxy implements Catalogo{
      * Implementación del getter de un producto.
      * @return el método getproducto del servidor.
      */
-    @Override public Producto getProducto(String codigo){
+    @Override public Producto getProducto(String codigo) throws RemoteException{
         return servidor.getProducto(codigo);
     }
 
@@ -40,7 +42,7 @@ public class CatalogoProxy implements Catalogo{
      * Implementación del método getClientes.
      * @return el método getClientes() del servidor.
      */
-    @Override public ClienteIterable getClientes(){
+    @Override public ClienteIterable getClientes() throws RemoteException{
         return servidor.getClientes();
     }
 
@@ -48,7 +50,7 @@ public class CatalogoProxy implements Catalogo{
      * Implementación del método getcliente.
      * @return el método getCliente() del servidor.
      */
-    @Override public ClienteObservador getCliente(String codigo){
+    @Override public ClienteObservador getCliente(String codigo) throws RemoteException{
         return servidor.getCliente(codigo);
     }
 

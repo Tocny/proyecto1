@@ -101,7 +101,7 @@ public class Cliente implements ClienteObservador, Serializable {
      * @param contrasena la contraseña de la cuenta bancaria.
      * @return si los valores de los parametros coinciden con los de la cuenta bancaria asociada.
      */
-    public boolean validarCredenciales(String usuario, String contrasena) {
+    @Override public boolean validarCredenciales(String usuario, String contrasena) {
         return this.cuentaBancaria.getUsuario().equals(usuario) && cuentaBancaria.validaContrasena(contrasena);
     }
 

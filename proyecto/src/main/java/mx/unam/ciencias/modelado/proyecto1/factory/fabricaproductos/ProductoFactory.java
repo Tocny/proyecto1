@@ -38,8 +38,7 @@ public abstract class ProductoFactory {
     public List<String> generaListaCadenas(ProductoIterable productos) {
         List<String> lineas = new ArrayList<>();
 
-        for (Map.Entry<String, Producto> entrada : productos) {
-            Producto producto = entrada.getValue();
+        for (Producto producto : productos) {
             lineas.add(descomponeProducto(producto));
         }
 

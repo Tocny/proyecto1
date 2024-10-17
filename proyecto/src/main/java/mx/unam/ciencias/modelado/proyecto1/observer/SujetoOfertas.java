@@ -41,9 +41,7 @@ public class SujetoOfertas implements Sujeto{
      */
     @Override public void notificaClientes(String oferta, Pais pais){
 
-        for (Map.Entry<String, ClienteObservador> entry : clientes) {
-            String identificador = entry.getKey();
-            ClienteObservador cliente = entry.getValue();
+        for (ClienteObservador cliente : clientes) {
 
             if(cliente.getPais() == pais){
                 cliente.notificar(oferta);

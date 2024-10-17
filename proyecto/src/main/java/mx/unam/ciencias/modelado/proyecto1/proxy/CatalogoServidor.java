@@ -106,8 +106,6 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
             LocateRegistry.createRegistry(1099);
             Naming.rebind("rmi://localhost/CatalogoServidor", getInstancia());
             System.out.println("Servidor de CheemsMart registrado. Esperando clientes.");
-            productos.mostrar();
-            clientes.mostrar();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

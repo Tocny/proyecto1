@@ -11,10 +11,11 @@ import java.io.Serializable;
  * Clase iterable para asociar identificadores de productos con objetos Producto.
  * Sobrecarga los métodos de un HashMap del JDK.
  */
-public class ProductoIterable implements Iterable<Map.Entry<String, Producto>>, Serializable{
+public class ProductoIterable implements Iterable<Producto>, Serializable {
 
-    /**Para objetos serializables. */
+    /** Para objetos serializables. */
     private static final long serialVersionUID = 1L;
+    
     /** Diccionario que asocia identificadores de productos con objetos Producto. */
     private Map<String, Producto> diccionario;
 
@@ -53,7 +54,8 @@ public class ProductoIterable implements Iterable<Map.Entry<String, Producto>>, 
      * Implementación concreta del método de la interfaz Iterable.
      * @return una instancia de ProductoIterator sobre el diccionario local.
      */
-    @Override public Iterator<Map.Entry<String, Producto>> iterator(){
+    @Override 
+    public Iterator<Producto> iterator(){
         return new ProductoIterator(diccionario);
     }
 

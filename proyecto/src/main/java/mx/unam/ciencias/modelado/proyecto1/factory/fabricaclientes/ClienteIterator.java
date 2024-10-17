@@ -1,40 +1,40 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
-import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Iterador para recorrer las entradas del diccionario que asocia
- * identificadores de clientes con objetos Cliente.
+ * Iterador para recorrer los objetos ClienteObservador del diccionario.
  */
-public class ClienteIterator implements Iterator<Map.Entry<String, ClienteObservador>> {
+public class ClienteIterator implements Iterator<ClienteObservador> {
 
-    /**Iterador privado. */
-    private Iterator<Map.Entry<String, ClienteObservador>> iterador;
+    /** Iterador privado sobre los valores del diccionario. */
+    private Iterator<ClienteObservador> iterador;
 
     /**
-     * Constructor de la clase, asigna el iterador.
-     * @param diccionario un diccionaro del cual extraer el iterador.
+     * Constructor de la clase que asigna el iterador sobre los valores del diccionario.
+     * @param diccionario el diccionario de clientes a iterar.
      */
     public ClienteIterator(Map<String, ClienteObservador> diccionario) {
-        this.iterador = diccionario.entrySet().iterator();
+        this.iterador = diccionario.values().iterator();
     }
 
     /**
-     * Implementacion del método hasnext
-     * @return el método hasNext del iterador.
+     * Implementación del método hasNext().
+     * @return true si hay más clientes, false en caso contrario.
      */
-    @Override public boolean hasNext() {
+    @Override
+    public boolean hasNext() {
         return iterador.hasNext();
     }
 
     /**
-     * Implementación del método next()
-     * @return el método next del iterador.
+     * Implementación del método next().
+     * @return el siguiente objeto ClienteObservador en el diccionario.
      */
-    @Override public Map.Entry<String, ClienteObservador> next() {
+    @Override
+    public ClienteObservador next() {
         return iterador.next();
     }
 }
