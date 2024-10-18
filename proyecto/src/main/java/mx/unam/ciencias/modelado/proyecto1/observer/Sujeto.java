@@ -25,7 +25,8 @@ public interface Sujeto{
     /**
      * Método para enviar una notificacion a todos los observadors.
      * @param oferta una oferta para los observadors del sitio.
+     * @param pais una región especifica a la cual se manda la notificación.
      */
-    public void notificarObservadores(String oferta);
+    public void notificarObservadores(Pais pais, ProductoDecorator oferta);
 
 }

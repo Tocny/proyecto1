@@ -44,14 +44,14 @@ public class SujetoOfertas implements Sujeto{
     /**
      * Implementación del método notificaobservadores()
      * @param oferta una cadena que representa una notificacion.
+     * @param pais el pais condicionado a las ofertas.
      */
-    @Override public void notificarObservadores(String oferta){
-        for (Observador Observador : observadores) {
-                Observador.notificar(oferta);
+    @Override public void notificarObservadores(Pais pais, ProductoDecorator oferta){
+        for (Observador observador : observadores) {
+            if(pais == observador.getRegion()){
+                observador.notificar(oferta);
+            }
         }
-
     }
-    
-
 
 }

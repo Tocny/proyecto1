@@ -42,7 +42,7 @@ public class ProductoConcreto implements Producto, Serializable{
      * Setter del codigo del producto.
      * @param codigo el nuevo codigo del producto.
      */
-    public void setCodigo(String codigo){
+    @Override public void setCodigo(String codigo){
         this.codigo = codigo;
     }
 
@@ -58,7 +58,7 @@ public class ProductoConcreto implements Producto, Serializable{
      * Setter del nombre.
      * @param nombre el nuevo nombre del producto.
      */
-    public void setNombre(String nombre) {
+    @Override public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -74,7 +74,7 @@ public class ProductoConcreto implements Producto, Serializable{
      * Setter del precio base del producto.
      * @param precioBase el nuevo precio base.
      */
-    public void setPrecioBase(double precioBase){
+    @Override public void setPrecioBase(double precioBase){
         this.precioBase = precioBase;
     }
 
@@ -91,7 +91,7 @@ public class ProductoConcreto implements Producto, Serializable{
      * @param precio el nuevo precio del producto.
      */
     public void setPrecio(double precio) {
-        this.precioBase = precio; // Almacena el precio base
+        this.precioBase = precio;
     }
 
     /**
@@ -106,7 +106,7 @@ public class ProductoConcreto implements Producto, Serializable{
      * Setter del departamento.
      * @param departamento el nuevo departamento del producto.
      */
-    public void setDepartamento(Departamento departamento) {
+    @Override public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
 

@@ -45,4 +45,7 @@ public interface Catalogo extends Remote{
      */
     public void inicioSesion(Observador observador) throws RemoteException;
 
+    /**Método simulación, para un evento que simula ofertas. */
+    public void simulaOfertas() throws RemoteException;
+
 }

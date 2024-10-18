@@ -1,6 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.menus;
 
-import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import mx.unam.ciencias.modelado.proyecto1.strategy.idioma.*;
@@ -9,6 +9,8 @@ import mx.unam.ciencias.modelado.proyecto1.builder.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
 import java.io.Serializable;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Clase que representa el menú del catálogo de productos.
@@ -27,6 +29,8 @@ public class MenuCatalogo implements Observador, Serializable{
     private CarritoBuilder armadorCarro;
     /**divisa del menú, importante si necesitamos ver precios. */
     private Moneda divisa;
+    /**Lista de ofertas, que serán aplicables */
+    private List<ProductoDecorator> ofertas;
 
     /**
      * Constructor de la clase, asigna atributos.
@@ -34,6 +38,7 @@ public class MenuCatalogo implements Observador, Serializable{
      * @param cliente un cliente.
      */
     public MenuCatalogo(ProductoIterable catalogo, Cliente cliente) {
+        this.ofertas = new ArrayList<>();
         this.catalogo = catalogo;
         this.cliente = cliente;
         this.divisa = cliente.getCuentaBancaria().getMoneda();
@@ -143,6 +148,10 @@ public class MenuCatalogo implements Observador, Serializable{
     }
 
     private void procederAlPago(){
+        for(ProductoDecorator oferta: ofertas){
+            armadorCarro.aplicarDescuentos(oferta);
+        }
+
         Carrito carrito = armadorCarro.buildCarrito();
 
         double cobro = carrito.calculaTotal();
@@ -180,8 +189,17 @@ public class MenuCatalogo implements Observador, Serializable{
      * Implementación del método notificar.
      * @param oferta la notificación en cuestión.
      */
-    @Override public void notificar(String oferta){
-        System.out.println(oferta);
+    @Override public void notificar(ProductoDecorator oferta){
+        System.out.println(oferta.mensajeOferta());
+        ofertas.add(oferta);
+    }
+
+    /**
+     * Implementación del método getRegion.
+     * @return el Pais al que pertenece el cliente.
+     */
+    @Override public Pais getRegion(){
+        return cliente.getPais();
     }
 
 }

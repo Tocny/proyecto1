@@ -1,6 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.observer;
 
 import mx.unam.ciencias.modelado.proyecto1.clientes.CuentaBancaria;
+import mx.unam.ciencias.modelado.proyecto1.decorator.ProductoDecorator;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
 
 /**
@@ -16,8 +17,13 @@ public interface Observador {
 
     /**
      * Método para notificar al cliente sobre una oferta.
-     * @param oferta la oferta que se notificará al cliente.
+     * @param oferta la oferta que se notificará al cliente, consiste de un objeto concreto.
      */
-    public void notificar(String oferta);
+    public void notificar(ProductoDecorator oferta);
 
+    /**
+     * Los observadores necesitan tener una region asociada.
+     * @return un valor de la enumeración Pais asociado al obsevador.
+     */
+    public Pais getRegion();
 }

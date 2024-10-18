@@ -62,5 +62,9 @@ public class CatalogoProxy implements Catalogo{
         servidor.inicioSesion(observador);
     }
 
+    @Override public void simulaOfertas() throws RemoteException{
+        servidor.simulaOfertas();
+    }
+
 }
 

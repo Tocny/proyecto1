@@ -1,7 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
-import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
-import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
+import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import mx.unam.ciencias.modelado.proyecto1.observer.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.*;
@@ -105,6 +105,24 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     @Override public void inicioSesion(Observador observador) throws RemoteException {
         System.out.println("Nuevo Inicio de Sesión: " +  observador.identificar());
         ofertas.agregar(observador);
+    }
+
+    /**
+     * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
+     */
+    @Override public void simulaOfertas(){
+        Producto pivote = new ProductoNulo();
+        ProductoDecorator disc15 = new Descuento15(pivote);
+        disc15.setDepartamento(Departamento.ELECTRONICOS);
+        ProductoDecorator disc25 = new Descuento25(pivote);
+        disc25.setDepartamento(Departamento.ELECTRODOMESTICOS);
+        ProductoDecorator disc50 = new Descuento50(pivote);
+        disc50.setDepartamento(Departamento.ALIMENTOS);
+
+        ofertas.notificarObservadores(Pais.ESTADOS_UNIDOS, disc15);
+        ofertas.notificarObservadores(Pais.MEXICO, disc25);
+        ofertas.notificarObservadores(Pais.BRASIL, disc50);
+
     }
 
     /**
