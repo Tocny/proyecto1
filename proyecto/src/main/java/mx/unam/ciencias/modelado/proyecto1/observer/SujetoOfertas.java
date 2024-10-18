@@ -34,11 +34,17 @@ public class SujetoOfertas implements Sujeto{
      * @param Observador el Observador que dejará de recibir notificaciones.
      */
     @Override public void eliminar(Observador observador){
-        if(observador == null){
-            throw new IllegalArgumentException("Argumento nulo.");
+        if (!observadores.remove(observador)) {
+        System.err.println("El observador no estaba en la lista.");
         }
+    }
 
-        observadores.remove(observador);
+    /**
+     * Método asociado a la parte de contabilizar los observadores.
+     * @return un entero que representa el número de observadores.
+     */
+    public int getLongitud(){
+        return observadores.size();
     }
 
     /**

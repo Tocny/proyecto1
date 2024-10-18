@@ -48,14 +48,15 @@ public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
      * Si las condiciones se cumplen el descuento indicado se le aplica al producto
      * @param descuento
      */
-    @Override public void aplicarDescuentos(ProductoDecorator descuento){
-        for (Producto producto : productos) {
-            System.out.println(producto.getDepartamento().name() + " - " + descuento.getDepartamento().name());
-            if(producto.getDepartamento() == descuento.getDepartamento()){
-                producto = descuento.envolver(producto);
-            }
+    @Override public void aplicarDescuentos(ProductoDecorator descuento) {
+        for (int i = 0; i < productos.size(); i++) {
+            Producto producto = productos.get(i);
+            if (producto.getDepartamento() == descuento.getDepartamento() && (cliente.getPais() == descuento.getRegion())) {
+                productos.set(i, descuento.envolver(producto));
+            } 
         }
     }
+
 
     /**
      * Metodo que mediante el constructor de la clase Carrito, le pasa los parametros creados en el builder y crea un carrito

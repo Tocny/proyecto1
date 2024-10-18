@@ -23,6 +23,12 @@ public interface Sujeto{
     public void eliminar(Observador observador);
 
     /**
+     * Método asociado a la parte de contabilizar los observadores.
+     * @return un entero que representa el número de observadores.
+     */
+    public int getLongitud();
+
+    /**
      * Método para enviar una notificacion a todos los observadors.
      * @param oferta una oferta para los observadors del sitio.
      * @param pais una región especifica a la cual se manda la notificación.

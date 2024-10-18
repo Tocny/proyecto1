@@ -25,10 +25,10 @@ public class ClienteRemoto{
                     break;
                 }
 
-                MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente);
+                MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente, proxy.getOfertas());
                 proxy.inicioSesion(menuCatalogo);
-                proxy.simulaOfertas();
                 menuCatalogo.mostrarMenu();
+                proxy.cierreSesion(menuCatalogo);
             }
 
 

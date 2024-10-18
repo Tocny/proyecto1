@@ -37,10 +37,10 @@ public class MenuCatalogo implements Observador, Serializable{
      * @param catalogo un objeto iterable de productos.
      * @param cliente un cliente.
      */
-    public MenuCatalogo(ProductoIterable catalogo, Cliente cliente) {
-        this.ofertas = new ArrayList<>();
+    public MenuCatalogo(ProductoIterable catalogo, Cliente cliente, List<ProductoDecorator> ofertas) {
         this.catalogo = catalogo;
         this.cliente = cliente;
+        this.ofertas = ofertas;
         this.divisa = cliente.getCuentaBancaria().getMoneda();
         this.idioma = determinaIdioma(cliente.getPais());
         this.armadorCarro = new CarritoBuilderConcreto(cliente);
@@ -149,6 +149,7 @@ public class MenuCatalogo implements Observador, Serializable{
 
     private void procederAlPago(){
         for(ProductoDecorator oferta: ofertas){
+            System.out.println(oferta.mensajeOferta());
             armadorCarro.aplicarDescuentos(oferta);
         }
 
@@ -200,6 +201,21 @@ public class MenuCatalogo implements Observador, Serializable{
      */
     @Override public Pais getRegion(){
         return cliente.getPais();
+    }
+
+    /**
+     * Método equals, es necesario para temas de estructuras comparables.
+     * @param obj un objeto.
+     * @return si this y that son equivalentes.
+     */
+    @Override public boolean equals(Object obj) {
+        if (this == obj) return true; // Compara la referencia en memoria
+        if (obj == null || getClass() != obj.getClass()) return false; // Verifica que sea de la misma clase
+
+        MenuCatalogo that = (MenuCatalogo) obj;
+
+        // Compara el identificador.
+        return this.identificar().equals(that.identificar());
     }
 
 }

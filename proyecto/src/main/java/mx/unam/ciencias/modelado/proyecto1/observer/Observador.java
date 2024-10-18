@@ -26,4 +26,10 @@ public interface Observador {
      * @return un valor de la enumeración Pais asociado al obsevador.
      */
     public Pais getRegion();
+
+    /**
+     * Método equals, de esta forma los observadores son comparables.
+     * @return si obj es equivalente a un observador.
+     */
+    public boolean equals(Object obj);
 }

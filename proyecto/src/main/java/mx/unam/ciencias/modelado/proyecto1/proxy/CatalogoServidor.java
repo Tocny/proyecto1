@@ -108,16 +108,46 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     }
 
     /**
-     * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
+     * Método que nos permite tener un registro de los clientees que cierran sesión. para cerrar la tienda.
+     * @param observador un observador que eliminar de las ofertas.
      */
-    @Override public void simulaOfertas(){
+    @Override public void cierreSesion(Observador observador) throws RemoteException{
+        System.out.println("Cierre de sesión: "  +  observador.identificar());
+        ofertas.eliminar(observador);
+        System.out.println("Clientes: " + ofertas.getLongitud());
+        if(ofertas.getLongitud() <= 0){
+            System.out.println("No hay más clientes. Cerrando servidor.");
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
+     * @return una lista de instancias de ProductoDecorator con información para ofertas.
+     */
+    @Override public List<ProductoDecorator> getOfertas(){
         ProductoDecorator disc15 = new Descuento15(new ProductoNulo());
         disc15.setDepartamento(Departamento.ELECTRONICOS);
+        disc15.setRegion(Pais.ESTADOS_UNIDOS);
+
         ProductoDecorator disc25 = new Descuento25(new ProductoNulo());
         disc25.setDepartamento(Departamento.ELECTRODOMESTICOS);
+        disc25.setRegion(Pais.MEXICO);
+
         ProductoDecorator disc50 = new Descuento50(new ProductoNulo());
         disc50.setDepartamento(Departamento.ALIMENTOS);
+        disc50.setRegion(Pais.BRASIL);
 
+        // Creamos una lista para almacenar los descuentos
+        List<ProductoDecorator> ofertas = new ArrayList<>();
+        
+        // Añadimos los descuentos a la lista
+        ofertas.add(disc15);
+        ofertas.add(disc25);
+        ofertas.add(disc50);
+
+        // Retornamos la lista de ofertas
+        return ofertas;
 
     }
 

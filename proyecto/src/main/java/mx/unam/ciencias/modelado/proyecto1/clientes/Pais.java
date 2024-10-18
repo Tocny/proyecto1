@@ -10,7 +10,11 @@ public enum Pais{
     /**Pais: Brasil. */
     BRASIL,
     /**Pais: México. */
-    MEXICO;
+    MEXICO,
+    /**Pais: Otro. cualquier otro pais */
+    OTRO,
+    /**Pais: NONE, no es ningun Pais. */
+    NONE;
 
     /**
      * Método que convierte una cadena en el valor correspondiente de la enumeración.
@@ -19,7 +23,7 @@ public enum Pais{
      */
     public static Pais fromString(String nombre) {
         if (nombre == null || nombre.isEmpty()) {
-            return null; // Si la cadena está vacía o es null, retornamos null
+            return Pais.NONE; // Si la cadena está vacía o es null, retornamos null
         }
 
         // Normalizamos la cadena: eliminamos acentos y convertimos a mayúsculas
@@ -36,6 +40,6 @@ public enum Pais{
         }
 
         // Si no coincide, retornamos null o podemos lanzar una excepción
-        return null;
+        return Pais.OTRO;
     }
 }

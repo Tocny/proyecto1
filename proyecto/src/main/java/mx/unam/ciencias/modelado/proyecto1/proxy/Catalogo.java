@@ -1,12 +1,14 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
-import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
+
 
 /**
  * Interfaz para el catalogo (proxy) de la tienda.
@@ -45,7 +47,13 @@ public interface Catalogo extends Remote{
      */
     public void inicioSesion(Observador observador) throws RemoteException;
 
+    /**
+     * Método para cerrar la sesion cuando un usuario sale de su cuenta.
+     * @param observador un usuario que acaba de salir del sitio.
+     */
+    public void cierreSesion(Observador observador) throws RemoteException;
+
     /**Método simulación, para un evento que simula ofertas. */
-    public void simulaOfertas() throws RemoteException;
+    public List<ProductoDecorator> getOfertas() throws RemoteException;
 
 }
