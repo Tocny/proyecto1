@@ -2,19 +2,18 @@ package mx.unam.ciencias.modelado.proyecto1.builder;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.List;
 import java.util.ArrayList;
 
 public class CarritoBuilderConcreto implements CarritoBuilder{
     List<Producto> productos;
-    ClienteObservador cliente;
+    Cliente cliente;
 
     /**
      * Constructor del CarritoConcreto
      * @param cliente
      */
-    public CarritoBuilderConcreto(ClienteObservador cliente){
+    public CarritoBuilderConcreto(Cliente cliente){
         this.cliente = cliente;
         this.productos = new ArrayList<>();
     }

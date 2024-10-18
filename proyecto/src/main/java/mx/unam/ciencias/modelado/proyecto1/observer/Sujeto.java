@@ -1,7 +1,8 @@
 package mx.unam.ciencias.modelado.proyecto1.observer;
 
-import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
 import mx.unam.ciencias.modelado.proyecto1.decorator.*;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
+
 
 /**
  * Interfaz sujeto del patrón observer.
@@ -10,22 +11,21 @@ import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 public interface Sujeto{
 
     /**
-     * Método para agregar clientes para mandar notificaciones
-     * @param cliente el cliente a agregar.
+     * Método para agregar observadors para mandar notificaciones
+     * @param observador el observador a agregar.
      */
-    public void agregarCliente(ClienteObservador cliente);
+    public void agregar(Observador observador);
 
     /**
-     * Método para eliminar clientes para que dejen de recibir notificaciones.
-     * @param cliente el cliente a eliminar.
+     * Método para eliminar observadors para que dejen de recibir notificaciones.
+     * @param observador el observador a eliminar.
      */
-    public void eliminarCliente(ClienteObservador cliente);
+    public void eliminar(Observador observador);
 
     /**
-     * Método para enviar una notificacion a todos los clientes.
-     * @param oferta una oferta para los clientes del sitio.
-     * @param pais un pais sobre el cual se notificará a los usuarios de dicho pais.
+     * Método para enviar una notificacion a todos los observadors.
+     * @param oferta una oferta para los observadors del sitio.
      */
-    public void notificaClientes(String oferta, Pais pais);
+    public void notificarObservadores(String oferta);
 
 }

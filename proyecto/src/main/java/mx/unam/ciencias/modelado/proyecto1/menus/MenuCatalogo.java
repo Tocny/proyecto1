@@ -2,7 +2,6 @@ package mx.unam.ciencias.modelado.proyecto1.menus;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.strategy.idioma.*;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.*;
 import mx.unam.ciencias.modelado.proyecto1.builder.*;
@@ -17,7 +16,7 @@ public class MenuCatalogo {
     /** Catálogo de productos. */
     private ProductoIterable catalogo;
     /** Cliente sobre el cual vamos a trabajar. */
-    private ClienteObservador cliente;
+    private Cliente cliente;
     /** Idioma del menú. */
     private Idioma idioma;
     /** Builder del carro de compra. */
@@ -30,7 +29,7 @@ public class MenuCatalogo {
      * @param catalogo un objeto iterable de productos.
      * @param cliente un cliente.
      */
-    public MenuCatalogo(ProductoIterable catalogo, ClienteObservador cliente) {
+    public MenuCatalogo(ProductoIterable catalogo, Cliente cliente) {
         this.catalogo = catalogo;
         this.cliente = cliente;
         this.divisa = cliente.getCuentaBancaria().getMoneda();

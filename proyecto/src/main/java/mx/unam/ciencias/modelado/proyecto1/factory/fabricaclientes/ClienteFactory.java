@@ -1,7 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -24,7 +23,7 @@ public abstract class ClienteFactory {
         
         for (String linea : lineas) {
             String[] datos = linea.split(",");
-            ClienteObservador cliente = fabricaCliente(datos);
+            Cliente cliente = fabricaCliente(datos);
             clientes.agregar(cliente);
         }
         return clientes;
@@ -39,7 +38,7 @@ public abstract class ClienteFactory {
     public List<String> generaListaCadenas(ClienteIterable clientes) {
         List<String> lineas = new ArrayList<>();
 
-        for (ClienteObservador cliente : clientes) {
+        for (Cliente cliente : clientes) {
             lineas.add(descomponeCliente(cliente));
         }
 
@@ -51,7 +50,7 @@ public abstract class ClienteFactory {
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Cliente con los datos dados.
      */
-    public abstract ClienteObservador fabricaCliente(String[] datos);
+    public abstract Cliente fabricaCliente(String[] datos);
 
     /**
      * Método que a partir de una instancia de Cliente se encarga de 
@@ -59,5 +58,5 @@ public abstract class ClienteFactory {
      * @param cliente la instancia de Cliente
      * @return los datos del cliente descompuestos en el formato de los archivos.
      */
-    public abstract String descomponeCliente(ClienteObservador cliente);
+    public abstract String descomponeCliente(Cliente cliente);
 }

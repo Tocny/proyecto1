@@ -2,7 +2,6 @@ package mx.unam.ciencias.modelado.proyecto1.builder;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import java.util.List;
 
@@ -12,14 +11,14 @@ public class Carrito {
     List<Producto> productos;
 
     /**Cliente al que pertenece el carrito */
-    ClienteObservador cliente;
+    Cliente cliente;
 
     /**
      * Constructor del objeto final carrito, sus parametros fueron antes manejados con el builder
      * @param productos
      * @param cliente
      */
-    public Carrito(List<Producto> productos, ClienteObservador cliente){
+    public Carrito(List<Producto> productos, Cliente cliente){
         this.productos = productos;
         this.cliente = cliente;
     }
@@ -36,7 +35,7 @@ public class Carrito {
      * Getter del cliente dueño del carrito
      * @return cliente
      */
-    public ClienteObservador getCliente(){
+    public Cliente getCliente(){
         return this.cliente;
     }
 
