@@ -2,19 +2,23 @@ package mx.unam.ciencias.modelado.proyecto1.builder;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class CarritoBuilderConcreto implements CarritoBuilder{
+public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
+
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     List<Producto> productos;
-    ClienteObservador cliente;
+    Cliente cliente;
+    
 
     /**
      * Constructor del CarritoConcreto
      * @param cliente
      */
-    public CarritoBuilderConcreto(ClienteObservador cliente){
+    public CarritoBuilderConcreto(Cliente cliente){
         this.cliente = cliente;
         this.productos = new ArrayList<>();
     }
@@ -42,12 +46,12 @@ public class CarritoBuilderConcreto implements CarritoBuilder{
      * Metodo que aplica los descuentos a la lista de productos del cliente
      * Entra en un ciclo con todos los productos de la lista y revisa si el producto pertenece al departamento deseado, asi como si el cliente es del pais deseado
      * Si las condiciones se cumplen el descuento indicado se le aplica al producto
-     * @param departamento
      * @param descuento
      */
-    @Override public void aplicarDescuentos(Departamento departamento, ProductoDecorator descuento){
+    @Override public void aplicarDescuentos(ProductoDecorator descuento){
         for (Producto producto : productos) {
-            if(producto.getDepartamento() == departamento){
+            System.out.println(producto.getDepartamento().name() + " - " + descuento.getDepartamento().name());
+            if(producto.getDepartamento() == descuento.getDepartamento()){
                 producto = descuento.envolver(producto);
             }
         }

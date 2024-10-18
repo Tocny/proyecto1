@@ -2,7 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.rmi.RemoteException;
@@ -50,10 +50,21 @@ public class CatalogoProxy implements Catalogo{
      * Implementación del método getcliente.
      * @return el método getCliente() del servidor.
      */
-    @Override public ClienteObservador getCliente(String codigo) throws RemoteException{
+    @Override public Cliente getCliente(String codigo) throws RemoteException{
         return servidor.getCliente(codigo);
     }
 
+    /**
+     * Implementación del método inicioSesion.
+     * @param observador el nuevo observador que se comunicó mediante el proxy.
+     */
+    @Override public void inicioSesion(Observador observador) throws RemoteException{
+        servidor.inicioSesion(observador);
+    }
+
+    @Override public void simulaOfertas() throws RemoteException{
+        servidor.simulaOfertas();
+    }
 
 }
 

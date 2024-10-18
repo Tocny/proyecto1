@@ -1,6 +1,5 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import java.util.Arrays;
 
@@ -15,7 +14,7 @@ public class ClienteFabricante extends ClienteFactory{
      * @param datos el arreglo de cadenas de donde se van a obtener los datos.
      * @return una instancia de Cliente a partir de los datos dados.
      */
-    @Override public ClienteObservador fabricaCliente(String[] datos){
+    @Override public Cliente fabricaCliente(String[] datos){
         if(datos.length != 5){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
@@ -41,7 +40,7 @@ public class ClienteFabricante extends ClienteFactory{
 
         CuentaBancaria cuentaBancaria = new CuentaBancaria(usuario, contrasena, saldo, pais);
 
-        return new Cliente(nombre, cuentaBancaria, pais);
+        return new ClienteConcreto(nombre, cuentaBancaria, pais);
 
     }
 
@@ -50,7 +49,7 @@ public class ClienteFabricante extends ClienteFactory{
      * @param objeto el objeto a descomponer.
      * @return una cadena que contiene los datos del objeto separados por comas.
      */
-    @Override public String descomponeCliente(ClienteObservador cliente) {
+    @Override public String descomponeCliente(Cliente cliente) {
     
         //Procedemos a extraer todos los datos del cliente.
         String nombre = cliente.getNombre();

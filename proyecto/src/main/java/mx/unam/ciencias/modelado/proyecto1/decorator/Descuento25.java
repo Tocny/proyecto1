@@ -42,10 +42,9 @@ public class Descuento25 extends ProductoDecorator {
 
     /**
      * Método para lanzar un mensaje de oferta, es una breve descripción de la oferta.
-     * @param departamento el departamento de productos sobre los que se aplica la oferta.
      * @return cadena que describe la oferta.
      */
-    @Override public String mensajeOferta(Departamento departamento){
-        return "Oferta: 25% de descuento en productos: " + departamento.name();
+    @Override public String mensajeOferta(){
+        return "Oferta: 25% de descuento en productos: " + getDepartamento().name();
     }
 }

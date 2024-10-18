@@ -1,7 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.builder;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.*;
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
 import java.util.List;
 import java.util.ArrayList;
@@ -31,10 +30,9 @@ public interface CarritoBuilder {
      * Aplica descuentos a los productos del carrito en función del departamento al que pertenecen, el país
      * en el que se encuentra el cliente, y el descuento especificado.
      *
-     * @param departamento el Departamento al que pertenece el producto para determinar si se aplican descuentos.
      * @param descuento el ProductoDecorator que encapsula las reglas del descuento a aplicar.
      */
-    public void aplicarDescuentos(Departamento departamento, ProductoDecorator descuento);
+    public void aplicarDescuentos(ProductoDecorator descuento);
 
     /**
      * Construye y retorna el objeto final del carrito con los productos agregados y los descuentos aplicados.

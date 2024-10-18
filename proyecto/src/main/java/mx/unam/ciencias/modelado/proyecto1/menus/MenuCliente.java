@@ -1,6 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.menus;
 
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
 
@@ -21,8 +21,8 @@ public class MenuCliente {
      * Método para mostrar el menú.
      * @return el cliente que inicia sesión o null si se selecciona salir.
      */
-    public ClienteObservador iniciar() {
-        ClienteObservador cliente = null;
+    public Cliente iniciar() {
+        Cliente cliente = null;
 
         while (true) {
             System.out.println("----- Login Menu -----");
@@ -48,9 +48,9 @@ public class MenuCliente {
 
     /**
      * Método para iniciar sesión, regresa un cliente si las credenciales son válidas.
-     * @return una instancia de ClienteObservador o null si no se encuentra el cliente o las credenciales no son válidas.
+     * @return una instancia de Cliente o null si no se encuentra el cliente o las credenciales no son válidas.
      */
-    private ClienteObservador iniciarSesion() {
+    private Cliente iniciarSesion() {
         while (true) { // Bucle infinito hasta que el usuario inicie sesión o decida salir
             String usuario = MetodosGet.getString("Enter your username (or type 'exit' to go back): ", "Username cannot be empty.");
 
@@ -63,7 +63,7 @@ public class MenuCliente {
             String contrasena = MetodosGet.getString("Enter your password: ", "Password cannot be empty.");
 
             try {
-                ClienteObservador cliente = clientes.getCliente(usuario);
+                Cliente cliente = clientes.getCliente(usuario);
                 
                 // Verificar las credenciales del cliente usando el método de la interfaz
                 if (cliente.validarCredenciales(usuario, contrasena)) {

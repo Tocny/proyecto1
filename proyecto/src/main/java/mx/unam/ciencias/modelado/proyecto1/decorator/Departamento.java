@@ -11,7 +11,10 @@ public enum Departamento{
     /**Departamento: Alimentos. */
     ALIMENTOS,
     /**Departamento: Otro */
-    OTRO;
+    OTRO,
+    /**Departamento: None, es ningún departamento. */
+    NONE;
+
 
     /**
      * Método que convierte una cadena en el valor correspondiente de la enumeración.

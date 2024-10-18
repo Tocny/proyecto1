@@ -1,22 +1,22 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Iterador para recorrer los objetos ClienteObservador del diccionario.
+ * Iterador para recorrer los objetos Cliente del diccionario.
  */
-public class ClienteIterator implements Iterator<ClienteObservador> {
+public class ClienteIterator implements Iterator<Cliente> {
 
     /** Iterador privado sobre los valores del diccionario. */
-    private Iterator<ClienteObservador> iterador;
+    private Iterator<Cliente> iterador;
 
     /**
      * Constructor de la clase que asigna el iterador sobre los valores del diccionario.
      * @param diccionario el diccionario de clientes a iterar.
      */
-    public ClienteIterator(Map<String, ClienteObservador> diccionario) {
+    public ClienteIterator(Map<String, Cliente> diccionario) {
         this.iterador = diccionario.values().iterator();
     }
 
@@ -31,10 +31,10 @@ public class ClienteIterator implements Iterator<ClienteObservador> {
 
     /**
      * Implementación del método next().
-     * @return el siguiente objeto ClienteObservador en el diccionario.
+     * @return el siguiente objeto Cliente en el diccionario.
      */
     @Override
-    public ClienteObservador next() {
+    public Cliente next() {
         return iterador.next();
     }
 }

@@ -1,6 +1,6 @@
 package mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes;
 
-import mx.unam.ciencias.modelado.proyecto1.observer.ClienteObservador;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,16 +8,16 @@ import java.lang.Iterable;
 import java.io.Serializable;
 
 /**
- * Clase iterable para asociar identificadores de clientes con objetos ClienteObservador.
+ * Clase iterable para asociar identificadores de clientes con objetos Cliente.
  * Sobrecarga los métodos de un HashMap del JDK.
  */
-public class ClienteIterable implements Iterable<ClienteObservador>, Serializable {
+public class ClienteIterable implements Iterable<Cliente>, Serializable {
 
     /** Para objetos serializables. */
     private static final long serialVersionUID = 1L;
     
-    /** Diccionario que asocia identificadores de clientes con objetos ClienteObservador. */
-    private Map<String, ClienteObservador> diccionario;
+    /** Diccionario que asocia identificadores de clientes con objetos Cliente. */
+    private Map<String, Cliente> diccionario;
 
     /** Constructor de la clase, inicializa el diccionario. */
     public ClienteIterable() {
@@ -29,7 +29,7 @@ public class ClienteIterable implements Iterable<ClienteObservador>, Serializabl
      * @param cliente el cliente a agregar.
      * @throws IllegalArgumentException si el cliente ya está registrado.
      */
-    public void agregar(ClienteObservador cliente) {
+    public void agregar(Cliente cliente) {
         String identificador = cliente.getCuentaBancaria().getUsuario();
         if (diccionario.containsKey(identificador)) {
             throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' ya está registrado.");
@@ -42,7 +42,7 @@ public class ClienteIterable implements Iterable<ClienteObservador>, Serializabl
      * @param cliente el cliente a eliminar.
      * @throws IllegalArgumentException si el cliente no existe en el diccionario.
      */
-    public void eliminar(ClienteObservador cliente) {
+    public void eliminar(Cliente cliente) {
         String identificador = cliente.getCuentaBancaria().getUsuario();
         if (!diccionario.containsKey(identificador)) {
             throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' no existe.");
@@ -56,7 +56,7 @@ public class ClienteIterable implements Iterable<ClienteObservador>, Serializabl
      * @return el cliente asociado al identificador.
      * @throws IllegalArgumentException si el cliente no existe.
      */
-    public ClienteObservador getCliente(String identificador) {
+    public Cliente getCliente(String identificador) {
         if (!diccionario.containsKey(identificador)) {
             throw new IllegalArgumentException("El cliente con el usuario '" + identificador + "' no está registrado.");
         }
@@ -77,7 +77,7 @@ public class ClienteIterable implements Iterable<ClienteObservador>, Serializabl
      * @return una instancia de ClienteIterator sobre el diccionario local.
      */
     @Override
-    public Iterator<ClienteObservador> iterator() {
+    public Iterator<Cliente> iterator() {
         return new ClienteIterator(diccionario);
     }
 
@@ -85,7 +85,7 @@ public class ClienteIterable implements Iterable<ClienteObservador>, Serializabl
      * Método para mostrar los nombres de todos los clientes.
      */
     public void mostrar() {
-        for (ClienteObservador cliente : diccionario.values()) {
+        for (Cliente cliente : diccionario.values()) {
             System.out.println(cliente.getNombre());
         }
     }
