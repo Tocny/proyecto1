@@ -111,17 +111,13 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
      */
     @Override public void simulaOfertas(){
-        Producto pivote = new ProductoNulo();
-        ProductoDecorator disc15 = new Descuento15(pivote);
+        ProductoDecorator disc15 = new Descuento15(new ProductoNulo());
         disc15.setDepartamento(Departamento.ELECTRONICOS);
-        ProductoDecorator disc25 = new Descuento25(pivote);
+        ProductoDecorator disc25 = new Descuento25(new ProductoNulo());
         disc25.setDepartamento(Departamento.ELECTRODOMESTICOS);
-        ProductoDecorator disc50 = new Descuento50(pivote);
+        ProductoDecorator disc50 = new Descuento50(new ProductoNulo());
         disc50.setDepartamento(Departamento.ALIMENTOS);
 
-        ofertas.notificarObservadores(Pais.ESTADOS_UNIDOS, disc15);
-        ofertas.notificarObservadores(Pais.MEXICO, disc25);
-        ofertas.notificarObservadores(Pais.BRASIL, disc50);
 
     }
 
