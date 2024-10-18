@@ -1,18 +1,22 @@
 package mx.unam.ciencias.modelado.proyecto1.menus;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import mx.unam.ciencias.modelado.proyecto1.strategy.idioma.*;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.*;
 import mx.unam.ciencias.modelado.proyecto1.builder.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
+import java.io.Serializable;
 
 /**
  * Clase que representa el menú del catálogo de productos.
  */
-public class MenuCatalogo {
+public class MenuCatalogo implements Observador, Serializable{
 
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     /** Catálogo de productos. */
     private ProductoIterable catalogo;
     /** Cliente sobre el cual vamos a trabajar. */
@@ -86,6 +90,7 @@ public class MenuCatalogo {
                     return;
                 case 7:
                     System.out.println(idioma.despedida());
+                    System.exit(0);
                     return;
             }
         }
@@ -150,6 +155,8 @@ public class MenuCatalogo {
             return;
         }
 
+        armadorCarro = new CarritoBuilderConcreto(cliente);
+
         System.out.println(idioma.ticket(dias, carrito));
 
     }
@@ -159,6 +166,22 @@ public class MenuCatalogo {
      */
     private void cerrarSesion() {
         System.out.println("Cerrando sesión de " + cliente.getNombre() + "...");
+    }
+
+    /**
+     * Implementación del método identificar.
+     * @return una cadena con los datos del cliente.
+     */
+    @Override public String identificar(){
+        return cliente.getNombre();
+    }
+
+    /**
+     * Implementación del método notificar.
+     * @param oferta la notificación en cuestión.
+     */
+    @Override public void notificar(String oferta){
+        System.out.println(oferta);
     }
 
 }

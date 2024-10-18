@@ -4,10 +4,15 @@ import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.clientes.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class CarritoBuilderConcreto implements CarritoBuilder{
+public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
+    
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
     List<Producto> productos;
     Cliente cliente;
+    
 
     /**
      * Constructor del CarritoConcreto

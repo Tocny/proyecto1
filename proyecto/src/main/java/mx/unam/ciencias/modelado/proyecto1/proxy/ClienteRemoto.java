@@ -26,6 +26,7 @@ public class ClienteRemoto{
                 }
 
                 MenuCatalogo menuCatalogo = new MenuCatalogo(proxy.getProductos(), cliente);
+                proxy.inicioSesion(menuCatalogo);
                 menuCatalogo.mostrarMenu();
             }
 
@@ -39,6 +40,7 @@ public class ClienteRemoto{
             
         } catch (Exception e){
             System.err.println("\nError inesperado.");
+            e.printStackTrace(); 
             System.err.println(e.getMessage());  
         }
     }

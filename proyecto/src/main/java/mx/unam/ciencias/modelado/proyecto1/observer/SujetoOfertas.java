@@ -22,6 +22,10 @@ public class SujetoOfertas implements Sujeto{
      * @param Observador un Observador que recibirá notificaciones.
      */
     @Override public void agregar(Observador observador){
+        if(observador == null){
+            throw new IllegalArgumentException("Argumento nulo.");
+        }
+
         observadores.add(observador);
     }
 
@@ -30,6 +34,10 @@ public class SujetoOfertas implements Sujeto{
      * @param Observador el Observador que dejará de recibir notificaciones.
      */
     @Override public void eliminar(Observador observador){
+        if(observador == null){
+            throw new IllegalArgumentException("Argumento nulo.");
+        }
+
         observadores.remove(observador);
     }
 

@@ -2,6 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.*;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.*;
 import mx.unam.ciencias.modelado.proyecto1.common.ReaderWriter; 
@@ -22,6 +23,8 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     private static ProductoIterable productos;
     /**Clientes de nuestra base de datos. */
     private static ClienteIterable clientes;
+    /**Ofertas. */
+    private static SujetoOfertas ofertas;
 
     /**
      * Constructor de la clase, inicializa el diccionario de productos.
@@ -29,6 +32,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     private CatalogoServidor() throws RemoteException{
         try {
+            ofertas = new SujetoOfertas();
             List<String> lineasProductos = ReaderWriter.read("data/Productos.csv");
             List<String> lineasClientes = ReaderWriter.read("data/Clientes.csv");
 
@@ -92,6 +96,15 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     public Cliente getCliente(String codigo){
         return clientes.getCliente(codigo);
+    }
+
+    /**
+     * Implementación del método inicioSesion.
+     * @param observador el nuevo observador que se comunicó mediante el proxy.
+     */
+    @Override public void inicioSesion(Observador observador) throws RemoteException {
+        System.out.println("Nuevo Inicio de Sesión: " +  observador.identificar());
+        ofertas.agregar(observador);
     }
 
     /**

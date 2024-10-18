@@ -2,6 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.proxy;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
+import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.rmi.Remote;
@@ -37,5 +38,11 @@ public interface Catalogo extends Remote{
      * @return una instancia de Cliente contenida en el iterable de clientes.
      */
     public Cliente getCliente(String codigo) throws RemoteException;
+
+    /**
+     * Método destinado a recibir cuando hay un nuevo usuario activo.
+     * @param observaro una implementación de la interfaz Observador.
+     */
+    public void inicioSesion(Observador observador) throws RemoteException;
 
 }

@@ -9,6 +9,12 @@ import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
 public interface Observador {
 
     /**
+     * Método particular de los observadores, para mostrar datos de ellos.
+     * @return una cadena con los datos del observador.
+     */
+    public String identificar();
+
+    /**
      * Método para notificar al cliente sobre una oferta.
      * @param oferta la oferta que se notificará al cliente.
      */

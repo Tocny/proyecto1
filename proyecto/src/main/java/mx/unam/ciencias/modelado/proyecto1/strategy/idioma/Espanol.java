@@ -1,11 +1,14 @@
 package mx.unam.ciencias.modelado.proyecto1.strategy.idioma;
 
 import mx.unam.ciencias.modelado.proyecto1.builder.Carrito;
+import java.io.Serializable;
 
 /** 
  * Clase que implementa el idioma en español. 
  */
-public class Espanol implements Idioma {
+public class Espanol implements Idioma, Serializable {
+    /**Para objetos serializables. */
+    private static final long serialVersionUID = 1L;
 
     /**
      * Método que organiza una cadena completa en base a los demás métodos de opciones.
