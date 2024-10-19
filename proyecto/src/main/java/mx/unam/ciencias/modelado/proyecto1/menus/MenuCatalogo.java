@@ -145,6 +145,7 @@ public class MenuCatalogo implements Observador, Serializable{
         System.out.println(carritoBuffer.calculaTotal() + "$");
     }
 
+    /**Método para proceder al pago de productos. */
     private void procederAlPago(){
         for(ProductoDecorator oferta: ofertas){
             System.out.println(oferta.mensajeOferta());
