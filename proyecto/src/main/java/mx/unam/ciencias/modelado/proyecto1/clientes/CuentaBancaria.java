@@ -22,7 +22,7 @@ public class CuentaBancaria implements Serializable{
      * @param usuario el usuario de la cuenta bancaria.
      * @param contrasena la contraseña d ele cuenta bancaria.
      * @param saldo el saldo de la cuenta bancaria.
-     * @param moneda el tipo de divisa que usa la cuenta.
+     * @param pais el pais al que pertenece el usuario.
      */
     public CuentaBancaria(String usuario, String contrasena, double saldo, Pais pais) {
         this.usuario = usuario;

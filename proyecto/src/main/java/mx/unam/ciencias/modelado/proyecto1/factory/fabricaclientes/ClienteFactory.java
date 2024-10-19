@@ -30,33 +30,10 @@ public abstract class ClienteFactory {
     }
 
     /**
-     * Método que se encarga de generar una lista de cadenas con el formato
-     * especificado para ser vaciado en un archivo (que funjirá como base de datos).
-     * @param clientes el diccionario de clientes que queremos descomponer.
-     * @return una lista de cadenas que corresponde a los clientes descompuestos.
-     */
-    public List<String> generaListaCadenas(ClienteIterable clientes) {
-        List<String> lineas = new ArrayList<>();
-
-        for (Cliente cliente : clientes) {
-            lineas.add(descomponeCliente(cliente));
-        }
-
-        return lineas;
-    }
-
-    /**
      * Método abstracto que creará un cliente a partir de un arreglo de cadenas.
      * @param datos un arreglo de cadenas que pueda ser empleado para crear un objeto.
      * @return una instancia de Cliente con los datos dados.
      */
     public abstract Cliente fabricaCliente(String[] datos);
 
-    /**
-     * Método que a partir de una instancia de Cliente se encarga de 
-     * descomponerlo en las componentes requeridas para eventualmente vaciarlo en un archivo.
-     * @param cliente la instancia de Cliente
-     * @return los datos del cliente descompuestos en el formato de los archivos.
-     */
-    public abstract String descomponeCliente(Cliente cliente);
 }

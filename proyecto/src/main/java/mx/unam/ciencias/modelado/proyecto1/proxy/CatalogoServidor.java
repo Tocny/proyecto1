@@ -24,7 +24,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     /**Clientes de nuestra base de datos. */
     private static ClienteIterable clientes;
     /**Ofertas. */
-    private static SujetoOfertas ofertas;
+    private static List<Observador> usuariosActivos;
 
     /**
      * Constructor de la clase, inicializa el diccionario de productos.
@@ -32,7 +32,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     private CatalogoServidor() throws RemoteException{
         try {
-            ofertas = new SujetoOfertas();
+            usuariosActivos = new ArrayList<>();
             List<String> lineasProductos = ReaderWriter.read("data/Productos.csv");
             List<String> lineasClientes = ReaderWriter.read("data/Clientes.csv");
 
@@ -104,7 +104,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     @Override public void inicioSesion(Observador observador) throws RemoteException {
         System.out.println("Nuevo Inicio de Sesión: " +  observador.identificar());
-        ofertas.agregar(observador);
+        usuariosActivos.add(observador);
     }
 
     /**
@@ -113,9 +113,8 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     @Override public void cierreSesion(Observador observador) throws RemoteException{
         System.out.println("Cierre de sesión: "  +  observador.identificar());
-        ofertas.eliminar(observador);
-        System.out.println("Clientes: " + ofertas.getLongitud());
-        if(ofertas.getLongitud() <= 0){
+        usuariosActivos.remove(observador);
+        if(usuariosActivos.size() <= 0){
             System.out.println("No hay más clientes. Cerrando servidor.");
             System.exit(0);
         }

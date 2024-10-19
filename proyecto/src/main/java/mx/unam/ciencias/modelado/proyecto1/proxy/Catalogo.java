@@ -18,6 +18,7 @@ public interface Catalogo extends Remote{
     /**
      * Getter del catalogo de productos.
      * @return un iterable de productos.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public ProductoIterable getProductos() throws RemoteException;
 
@@ -25,12 +26,14 @@ public interface Catalogo extends Remote{
      * Getter de un producto, dado su codigo.
      * @param codigo un codigo asociado al producto.
      * @return una instancia de producto, que deberá estar contenida en el catalogo.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public Producto getProducto(String codigo) throws RemoteException;
 
     /**
      * Getter de un iterable de clientes.
      * @return una instancia de ClienteIterable.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public ClienteIterable getClientes() throws RemoteException;
 
@@ -38,22 +41,31 @@ public interface Catalogo extends Remote{
      * Getter de un cliente.
      * @param codigo una cadena codigo (usuario) asociado a un cliente en el iterable.
      * @return una instancia de Cliente contenida en el iterable de clientes.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public Cliente getCliente(String codigo) throws RemoteException;
 
     /**
      * Método destinado a recibir cuando hay un nuevo usuario activo.
-     * @param observaro una implementación de la interfaz Observador.
+     * @param observador una implementación de la interfaz Observador.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public void inicioSesion(Observador observador) throws RemoteException;
 
     /**
      * Método para cerrar la sesion cuando un usuario sale de su cuenta.
      * @param observador un usuario que acaba de salir del sitio.
+     * @throws RemoteException si ocurre un error durante la comunicación remota
      */
     public void cierreSesion(Observador observador) throws RemoteException;
 
-    /**Método simulación, para un evento que simula ofertas. */
+    /**
+     * Método de solicitud de actualizaciones, esto se hizo para compatibilidades con obsever.
+     * Especificamente para el aspecto de un sujeto que solicita información para un obsevador.
+     * @param observador el observador que va a recibir la información.
+     * @return una lista de descuentos aplicables para un observador.
+     * @throws RemoteException si ocurre un error durante la comunicación remota.
+     */
     public List<ProductoDecorator> solicitaActualizaciones(Observador observador) throws RemoteException;
 
 }

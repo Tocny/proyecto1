@@ -95,7 +95,7 @@ public class MenuCatalogo implements Observador, Serializable{
                     return;
                 case 7:
                     System.out.println(idioma.despedida());
-                    System.exit(0);
+                    cerrarSesion();
                     return;
             }
         }
@@ -142,9 +142,9 @@ public class MenuCatalogo implements Observador, Serializable{
     /**Método para ver los productos del carrito. */
     private void verCarrito(){
         Carrito carritoBuffer = armadorCarro.buildCarrito();
-
+        System.out.println("Carrito: ");
         System.out.println("\n" + carritoBuffer.recibo());
-        System.out.println(carritoBuffer.calculaTotal());
+        System.out.println(carritoBuffer.calculaTotal() + "$");
     }
 
     private void procederAlPago(){
