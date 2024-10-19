@@ -125,7 +125,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
      * @return una lista de instancias de ProductoDecorator con información para ofertas.
      */
-    @Override public List<ProductoDecorator> getOfertas(){
+    public List<ProductoDecorator> getOfertas(){
         ProductoDecorator disc15 = new Descuento15(new ProductoNulo());
         disc15.setDepartamento(Departamento.ELECTRONICOS);
         disc15.setRegion(Pais.ESTADOS_UNIDOS);
@@ -139,16 +139,34 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
         disc50.setRegion(Pais.BRASIL);
 
         // Creamos una lista para almacenar los descuentos
-        List<ProductoDecorator> ofertas = new ArrayList<>();
+        List<ProductoDecorator> descuentos = new ArrayList<>();
         
         // Añadimos los descuentos a la lista
-        ofertas.add(disc15);
-        ofertas.add(disc25);
-        ofertas.add(disc50);
+        descuentos.add(disc15);
+        descuentos.add(disc25);
+        descuentos.add(disc50);
 
         // Retornamos la lista de ofertas
-        return ofertas;
+        return descuentos;
 
+    }
+
+    /**
+     * Método especifico de la clase servidora, se trata de una forma que tendrán los proxys de acceder
+     * a descuentos aplicables según sea la región del observador.
+     * @param observador el observador que quiere acceder a las actualizaciones del servidor.
+     * @return una lista de descuentos aplicables.
+     */
+    @Override public List<ProductoDecorator> solicitaActualizaciones(Observador observador){
+        List<ProductoDecorator> descuentosAplicables = new ArrayList<>();
+
+        for(ProductoDecorator descuento: getOfertas()){
+            if(descuento.getRegion() == observador.getRegion()){
+                descuentosAplicables.add(descuento);
+            }
+        }
+
+        return descuentosAplicables;
     }
 
     /**

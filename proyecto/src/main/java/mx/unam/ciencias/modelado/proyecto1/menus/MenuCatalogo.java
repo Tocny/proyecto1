@@ -37,10 +37,10 @@ public class MenuCatalogo implements Observador, Serializable{
      * @param catalogo un objeto iterable de productos.
      * @param cliente un cliente.
      */
-    public MenuCatalogo(ProductoIterable catalogo, Cliente cliente, List<ProductoDecorator> ofertas) {
+    public MenuCatalogo(ProductoIterable catalogo, Cliente cliente) {
         this.catalogo = catalogo;
         this.cliente = cliente;
-        this.ofertas = ofertas;
+        this.ofertas = new ArrayList<>();
         this.divisa = cliente.getCuentaBancaria().getMoneda();
         this.idioma = determinaIdioma(cliente.getPais());
         this.armadorCarro = new CarritoBuilderConcreto(cliente);

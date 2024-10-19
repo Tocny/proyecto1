@@ -71,8 +71,8 @@ public class CatalogoProxy implements Catalogo{
         servidor.cierreSesion(observador);
     }
 
-    @Override public List<ProductoDecorator> getOfertas() throws RemoteException{
-        return servidor.getOfertas();
+    @Override public List<ProductoDecorator> solicitaActualizaciones(Observador observador) throws RemoteException{
+        return servidor.solicitaActualizaciones(observador);
     }
 
 }
