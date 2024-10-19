@@ -45,6 +45,6 @@ public class Descuento50 extends ProductoDecorator {
      * @return cadena que describe la oferta.
      */
     @Override public String mensajeOferta(){
-        return "Oferta: 50% de descuento en productos: " + getDepartamento().name();
+        return "\nOferta: Cuentas con un cupon del 50% de descuento en productos: " + getDepartamento().name();
     }
 }

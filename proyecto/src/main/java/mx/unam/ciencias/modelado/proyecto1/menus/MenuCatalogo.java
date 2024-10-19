@@ -10,6 +10,7 @@ import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIter
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Iterator;
 import java.util.ArrayList;
 
 /**
@@ -147,10 +148,14 @@ public class MenuCatalogo implements Observador, Serializable{
 
     /**Método para proceder al pago de productos. */
     private void procederAlPago(){
-        for(ProductoDecorator oferta: ofertas){
+        //Aplicamos descuentos.
+        for (Iterator<ProductoDecorator> iterator = ofertas.iterator(); iterator.hasNext(); ) {
+            ProductoDecorator oferta = iterator.next();
             System.out.println(oferta.mensajeOferta());
             armadorCarro.aplicarDescuentos(oferta);
+            iterator.remove();  // Elimina de manera segura el elemento actual de la lista
         }
+
 
         Carrito carrito = armadorCarro.buildCarrito();
 
