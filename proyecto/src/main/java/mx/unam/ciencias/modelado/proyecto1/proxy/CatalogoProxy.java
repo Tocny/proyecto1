@@ -32,27 +32,11 @@ public class CatalogoProxy implements Catalogo{
     }
 
     /**
-     * Implementación del getter de un producto.
-     * @return el método getproducto del servidor.
-     */
-    @Override public Producto getProducto(String codigo) throws RemoteException{
-        return servidor.getProducto(codigo);
-    }
-
-    /**
      * Implementación del método getClientes.
      * @return el método getClientes() del servidor.
      */
     @Override public ClienteIterable getClientes() throws RemoteException{
         return servidor.getClientes();
-    }
-
-    /**
-     * Implementación del método getcliente.
-     * @return el método getCliente() del servidor.
-     */
-    @Override public Cliente getCliente(String codigo) throws RemoteException{
-        return servidor.getCliente(codigo);
     }
 
     /**

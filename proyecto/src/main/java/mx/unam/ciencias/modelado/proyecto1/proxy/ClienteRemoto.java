@@ -10,7 +10,6 @@ import java.rmi.Naming;
 /**Clase intermedia entre el proxy y el servidor. */
 public class ClienteRemoto implements Sujeto {
 
-    private static Cliente cliente;
     private static CatalogoProxy proxy;
     private static MenuCatalogo menuCatalogo;
 
@@ -22,7 +21,7 @@ public class ClienteRemoto implements Sujeto {
             MenuCliente menuCliente = new MenuCliente(proxy.getClientes());
 
             while (true) {
-                cliente = menuCliente.iniciar();
+                Cliente cliente = menuCliente.iniciar();
 
                 if (cliente == null) {
                     break;

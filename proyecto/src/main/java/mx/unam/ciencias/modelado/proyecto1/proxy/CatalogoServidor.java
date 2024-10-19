@@ -23,7 +23,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     private static ProductoIterable productos;
     /**Clientes de nuestra base de datos. */
     private static ClienteIterable clientes;
-    /**Ofertas. */
+    /**Lista de usuarios captados por el servidor. */
     private static List<Observador> usuariosActivos;
 
     /**
@@ -72,30 +72,11 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     }
 
     /**
-     * Getter de un producto del diccionario de productos.
-     * @param codigo un codigo asociado al producto.
-     * @return un producto del iterable "productos".
-     */
-    @Override public Producto getProducto(String codigo){
-        return productos.getProducto(codigo);
-    }
-
-
-    /**
      * Getter de un iterable de clientes.
      * @return una instancia de ClienteIterable.
      */
-    public ClienteIterable getClientes(){
+    @Override public ClienteIterable getClientes(){
         return clientes;
-    }
-
-    /**
-     * Getter de un cliente.
-     * @param codigo una cadena codigo (usuario) asociado a un cliente en el iterable.
-     * @return una instancia de Cliente contenida en el iterable de clientes.
-     */
-    public Cliente getCliente(String codigo){
-        return clientes.getCliente(codigo);
     }
 
     /**
@@ -151,8 +132,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     }
 
     /**
-     * Método especifico de la clase servidora, se trata de una forma que tendrán los proxys de acceder
-     * a descuentos aplicables según sea la región del observador.
+     * Se trata de una forma que tendrán los proxys de acceder a descuentos aplicables según sea la región del observador.
      * @param observador el observador que quiere acceder a las actualizaciones del servidor.
      * @return una lista de descuentos aplicables.
      */
