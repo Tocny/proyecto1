@@ -2,7 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.builder;
 
 import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
-import mx.unam.ciencias.modelado.proyecto1.clientes.*;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import java.util.List;
 
 
@@ -15,8 +15,8 @@ public class Carrito {
 
     /**
      * Constructor del objeto final carrito, sus parametros fueron antes manejados con el builder
-     * @param productos
-     * @param cliente
+     * @param productos la lista de productos.
+     * @param cliente un cliente asociado al carrito.
      */
     public Carrito(List<Producto> productos, Cliente cliente){
         this.productos = productos;
@@ -51,7 +51,6 @@ public class Carrito {
         for (Producto producto : productos) {
             recibo.append(producto.descripcion(divisa)).append("\n");
         }
-
 
         return recibo.toString();
     }

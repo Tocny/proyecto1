@@ -23,7 +23,8 @@ public class ClienteConcreto implements Cliente, Serializable {
      * @param cuentaBancaria la cuenta bancaria asociada.
      * @param pais el pais del cliente.
      */
-    public ClienteConcreto(String nombre, CuentaBancaria cuentaBancaria, Pais pais) {
+    public ClienteConcreto(String id, String nombre, CuentaBancaria cuentaBancaria, Pais pais) {
+        this.id = id;
         this.nombre = nombre;
         this.cuentaBancaria = cuentaBancaria;
         this.id = cuentaBancaria.getUsuario();

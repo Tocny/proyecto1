@@ -24,7 +24,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
     /**Clientes de nuestra base de datos. */
     private static ClienteIterable clientes;
     /**Ofertas. */
-    private static SujetoOfertas ofertas;
+    private static List<Observador> usuariosActivos;
 
     /**
      * Constructor de la clase, inicializa el diccionario de productos.
@@ -32,7 +32,7 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     private CatalogoServidor() throws RemoteException{
         try {
-            ofertas = new SujetoOfertas();
+            usuariosActivos = new ArrayList<>();
             List<String> lineasProductos = ReaderWriter.read("data/Productos.csv");
             List<String> lineasClientes = ReaderWriter.read("data/Clientes.csv");
 
@@ -104,25 +104,68 @@ public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
      */
     @Override public void inicioSesion(Observador observador) throws RemoteException {
         System.out.println("Nuevo Inicio de Sesión: " +  observador.identificar());
-        ofertas.agregar(observador);
+        usuariosActivos.add(observador);
+    }
+
+    /**
+     * Método que nos permite tener un registro de los clientees que cierran sesión. para cerrar la tienda.
+     * @param observador un observador que eliminar de las ofertas.
+     */
+    @Override public void cierreSesion(Observador observador) throws RemoteException{
+        System.out.println("Cierre de sesión: "  +  observador.identificar());
+        usuariosActivos.remove(observador);
+        if(usuariosActivos.size() <= 0){
+            System.out.println("No hay más clientes. Cerrando servidor.");
+            System.exit(0);
+        }
     }
 
     /**
      * Método que constituye una simulación sobre la cual se mandan las ofertas a los usuarios.
+     * @return una lista de instancias de ProductoDecorator con información para ofertas.
      */
-    @Override public void simulaOfertas(){
-        Producto pivote = new ProductoNulo();
-        ProductoDecorator disc15 = new Descuento15(pivote);
+    public List<ProductoDecorator> getOfertas(){
+        ProductoDecorator disc15 = new Descuento15(new ProductoNulo());
         disc15.setDepartamento(Departamento.ELECTRONICOS);
-        ProductoDecorator disc25 = new Descuento25(pivote);
+        disc15.setRegion(Pais.ESTADOS_UNIDOS);
+
+        ProductoDecorator disc25 = new Descuento25(new ProductoNulo());
         disc25.setDepartamento(Departamento.ELECTRODOMESTICOS);
-        ProductoDecorator disc50 = new Descuento50(pivote);
+        disc25.setRegion(Pais.MEXICO);
+
+        ProductoDecorator disc50 = new Descuento50(new ProductoNulo());
         disc50.setDepartamento(Departamento.ALIMENTOS);
+        disc50.setRegion(Pais.BRASIL);
 
-        ofertas.notificarObservadores(Pais.ESTADOS_UNIDOS, disc15);
-        ofertas.notificarObservadores(Pais.MEXICO, disc25);
-        ofertas.notificarObservadores(Pais.BRASIL, disc50);
+        // Creamos una lista para almacenar los descuentos
+        List<ProductoDecorator> descuentos = new ArrayList<>();
+        
+        // Añadimos los descuentos a la lista
+        descuentos.add(disc15);
+        descuentos.add(disc25);
+        descuentos.add(disc50);
 
+        // Retornamos la lista de ofertas
+        return descuentos;
+
+    }
+
+    /**
+     * Método especifico de la clase servidora, se trata de una forma que tendrán los proxys de acceder
+     * a descuentos aplicables según sea la región del observador.
+     * @param observador el observador que quiere acceder a las actualizaciones del servidor.
+     * @return una lista de descuentos aplicables.
+     */
+    @Override public List<ProductoDecorator> solicitaActualizaciones(Observador observador){
+        List<ProductoDecorator> descuentosAplicables = new ArrayList<>();
+
+        for(ProductoDecorator descuento: getOfertas()){
+            if(descuento.getRegion() == observador.getRegion()){
+                descuentosAplicables.add(descuento);
+            }
+        }
+
+        return descuentosAplicables;
     }
 
     /**

@@ -15,15 +15,16 @@ public class ClienteFabricante extends ClienteFactory{
      * @return una instancia de Cliente a partir de los datos dados.
      */
     @Override public Cliente fabricaCliente(String[] datos){
-        if(datos.length != 5){
+        if(datos.length != 6){
                 throw new IllegalArgumentException("Formato de producto erroneo: " +  Arrays.toString(datos));
         }
 
-        String nombre = datos[0].trim();
-        String paisString = datos[1].trim();
-        String usuario = datos[2].trim();
-        String contrasena = datos[3].trim();
-        String saldoString = datos[4].trim();
+        String id = datos[0].trim();
+        String nombre = datos[1].trim();
+        String paisString = datos[2].trim();
+        String usuario = datos[3].trim();
+        String contrasena = datos[4].trim();
+        String saldoString = datos[5].trim();
 
         Pais pais;
         double saldo;
@@ -40,26 +41,7 @@ public class ClienteFabricante extends ClienteFactory{
 
         CuentaBancaria cuentaBancaria = new CuentaBancaria(usuario, contrasena, saldo, pais);
 
-        return new ClienteConcreto(nombre, cuentaBancaria, pais);
-
-    }
-
-    /**
-     * Método que descompone un objeto ProductoConcreto en una cadena de texto separada por comas.
-     * @param objeto el objeto a descomponer.
-     * @return una cadena que contiene los datos del objeto separados por comas.
-     */
-    @Override public String descomponeCliente(Cliente cliente) {
-    
-        //Procedemos a extraer todos los datos del cliente.
-        String nombre = cliente.getNombre();
-        CuentaBancaria cuenta = cliente.getCuentaBancaria();
-        String usuario = cuenta.getUsuario();
-        String contrasena = cuenta.getContrasena();
-        String saldo = String.valueOf(cuenta.getSaldo());
-        String pais = cliente.getPais().name();
-
-        return String.join(",", nombre, pais, usuario, contrasena, saldo);
+        return new ClienteConcreto(id, nombre, cuentaBancaria, pais);
 
     }
 }

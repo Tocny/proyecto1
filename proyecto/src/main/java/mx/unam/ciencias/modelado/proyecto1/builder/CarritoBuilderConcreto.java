@@ -10,13 +10,14 @@ public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
 
     /**Para objetos serializables. */
     private static final long serialVersionUID = 1L;
+    /**Para guardar la lista de productos del carrito. */
     List<Producto> productos;
+    /**Para asignar un cliente. */
     Cliente cliente;
     
-
     /**
-     * Constructor del CarritoConcreto
-     * @param cliente
+     * Constructor del CarritoConcreto, asigna atributos
+     * @param cliente el cliente al que está asocciado el carro.
      */
     public CarritoBuilderConcreto(Cliente cliente){
         this.cliente = cliente;
@@ -25,6 +26,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
 
     /**
      * Metodo que agrega un producto a la lista del carrito
+     * @param producto el producto que va a agregarse.
      */
     @Override public void agregarProducto(Producto producto){
         productos.add(producto);
@@ -32,7 +34,7 @@ public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
 
     /**
      * Metodo que elimina el producto indicado de la lista del carrito
-     * @param producto
+     * @param producto el producto que va a eliminarse.
      */
     @Override public void eliminarProducto(Producto producto){
         boolean removed = productos.remove(producto);
@@ -46,16 +48,17 @@ public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
      * Metodo que aplica los descuentos a la lista de productos del cliente
      * Entra en un ciclo con todos los productos de la lista y revisa si el producto pertenece al departamento deseado, asi como si el cliente es del pais deseado
      * Si las condiciones se cumplen el descuento indicado se le aplica al producto
-     * @param descuento
+     * @param descuento el descuento que va a aplicarse sobre los productos.
      */
-    @Override public void aplicarDescuentos(ProductoDecorator descuento){
-        for (Producto producto : productos) {
-            System.out.println(producto.getDepartamento().name() + " - " + descuento.getDepartamento().name());
-            if(producto.getDepartamento() == descuento.getDepartamento()){
-                producto = descuento.envolver(producto);
-            }
+    @Override public void aplicarDescuentos(ProductoDecorator descuento) {
+        for (int i = 0; i < productos.size(); i++) {
+            Producto producto = productos.get(i);
+            if (producto.getDepartamento() == descuento.getDepartamento() && (cliente.getPais() == descuento.getRegion())) {
+                productos.set(i, descuento.envolver(producto));
+            } 
         }
     }
+
 
     /**
      * Metodo que mediante el constructor de la clase Carrito, le pasa los parametros creados en el builder y crea un carrito

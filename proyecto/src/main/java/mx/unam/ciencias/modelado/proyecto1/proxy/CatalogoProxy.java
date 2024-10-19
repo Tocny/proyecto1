@@ -1,11 +1,12 @@
 package mx.unam.ciencias.modelado.proyecto1.proxy;
 
-import mx.unam.ciencias.modelado.proyecto1.decorator.Producto;
+import mx.unam.ciencias.modelado.proyecto1.decorator.*;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.observer.Observador;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIterable;
 import java.rmi.RemoteException;
+import java.util.List;
 
 
 public class CatalogoProxy implements Catalogo{
@@ -62,8 +63,16 @@ public class CatalogoProxy implements Catalogo{
         servidor.inicioSesion(observador);
     }
 
-    @Override public void simulaOfertas() throws RemoteException{
-        servidor.simulaOfertas();
+    /**
+     * Implementación del método cierreSesion
+     * @param observador un observador que acaba de terminar su comunicación con el servidor.
+     */
+    @Override public void cierreSesion(Observador observador) throws RemoteException{
+        servidor.cierreSesion(observador);
+    }
+
+    @Override public List<ProductoDecorator> solicitaActualizaciones(Observador observador) throws RemoteException{
+        return servidor.solicitaActualizaciones(observador);
     }
 
 }

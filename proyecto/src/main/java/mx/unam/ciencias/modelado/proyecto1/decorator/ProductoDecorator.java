@@ -1,6 +1,7 @@
 package mx.unam.ciencias.modelado.proyecto1.decorator;
 
 import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
+import mx.unam.ciencias.modelado.proyecto1.clientes.Pais;
 import java.io.Serializable;
 
 public abstract class ProductoDecorator implements Producto, Serializable {
@@ -9,6 +10,8 @@ public abstract class ProductoDecorator implements Producto, Serializable {
     private static final long serialVersionUID = 1L;
     /** Producto asociado al decorador. */
     protected Producto producto;
+    /** Pais sobre el cual se compara para envolver el objeto. */
+    protected Pais region = Pais.NONE;
 
     /**
      * Constructor de la clase, asigna el atributo producto.
@@ -81,6 +84,22 @@ public abstract class ProductoDecorator implements Producto, Serializable {
      */
     @Override public void setDepartamento(Departamento departamento) {
         producto.setDepartamento(departamento);
+    }
+
+    /**
+     * Getter para obtener la región del producto.
+     * @return la región (Pais) del producto decorador.
+     */
+    public Pais getRegion() {
+        return this.region;
+    }
+
+    /**
+     * Setter para establecer la región del producto.
+     * @param region la nueva región (Pais) que se asignará.
+     */
+    public void setRegion(Pais region) {
+        this.region = region;
     }
 
     /**

@@ -40,20 +40,4 @@ public class ProductoFabricante extends ProductoFactory{
 
         return new ProductoConcreto(codigo, nombre, precioBase, departamento);
     }
-
-    /**
-     * Método que descompone un objeto ProductoConcreto en una cadena de texto separada por comas.
-     * @param objeto el objeto a descomponer.
-     * @return una cadena que contiene los datos del objeto separados por comas.
-     */
-    public String descomponeProducto(Producto producto) {
-
-        //Procedemos a extraer todos los datos del cliente.
-        String codigo = String.valueOf(producto.getCodigo());
-        String nombre = producto.getNombre();
-        String precio = String.valueOf(producto.getPrecioBase());
-        String departamento = producto.getDepartamento().name();
-
-        return String.join(",", codigo, nombre, precio, departamento);
-    }
 }

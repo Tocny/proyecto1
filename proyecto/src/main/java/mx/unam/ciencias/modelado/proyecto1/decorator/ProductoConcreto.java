@@ -115,7 +115,9 @@ public class ProductoConcreto implements Producto, Serializable{
      * @return una cadena similar a "Laptop - $1000.00 (USD, Electrónica)"
      */
     @Override public String descripcion(Moneda moneda) {
-        return String.format("[%s]\t%s - $%.2f (%s ,%s)", codigo, nombre, getPrecio(moneda), moneda.getNombre(),  departamento);
+        return String.format("Código: %-8s\tProducto: %-20s\tPrecio: $%.2f(%s)\tDepartamento: %s", 
+                            codigo, nombre, getPrecio(moneda), moneda.getNombre(), departamento);
     }
+
 
 }
