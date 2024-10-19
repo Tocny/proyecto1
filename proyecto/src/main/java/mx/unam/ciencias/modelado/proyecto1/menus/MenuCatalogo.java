@@ -27,8 +27,6 @@ public class MenuCatalogo implements Observador, Serializable{
     private Idioma idioma;
     /** Builder del carro de compra. */
     private CarritoBuilder armadorCarro;
-    /**divisa del menú, importante si necesitamos ver precios. */
-    private Moneda divisa;
     /**Lista de ofertas, que serán aplicables */
     private List<ProductoDecorator> ofertas;
 
@@ -41,7 +39,6 @@ public class MenuCatalogo implements Observador, Serializable{
         this.catalogo = catalogo;
         this.cliente = cliente;
         this.ofertas = new ArrayList<>();
-        this.divisa = cliente.getCuentaBancaria().getMoneda();
         this.idioma = determinaIdioma(cliente.getPais());
         this.armadorCarro = new CarritoBuilderConcreto(cliente);
         System.out.println(idioma.saludo());
@@ -106,6 +103,7 @@ public class MenuCatalogo implements Observador, Serializable{
      */
     private void mostrarCatalogo() {
         for(Producto producto: catalogo){
+            Moneda divisa = cliente.getCuentaBancaria().getMoneda();
             System.out.println(producto.descripcion(divisa));
         }
     }
@@ -147,6 +145,7 @@ public class MenuCatalogo implements Observador, Serializable{
         System.out.println(carritoBuffer.calculaTotal() + "$");
     }
 
+    /**Método para proceder al pago de productos. */
     private void procederAlPago(){
         for(ProductoDecorator oferta: ofertas){
             System.out.println(oferta.mensajeOferta());
