@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * Clase concreta que implementa CarritoBuilder.
+ * Permite agregar, eliminar productos, así como aplicar descuentos.
+ * Particularmente arma los carritos.
+ */
 public class CarritoBuilderConcreto implements CarritoBuilder, Serializable{
 
     /**Para objetos serializables. */

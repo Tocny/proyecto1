@@ -13,6 +13,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Clase catalogo servidor. Funge como fuente central de información del proyecto.
+ * Todos los usuarios deberán solicitarle información a esta clase.
+ */
 public class CatalogoServidor extends UnicastRemoteObject implements Catalogo{
 
     /**El serialVersionUID. */

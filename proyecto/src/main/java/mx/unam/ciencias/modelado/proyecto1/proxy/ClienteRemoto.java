@@ -7,12 +7,20 @@ import mx.unam.ciencias.modelado.proyecto1.observer.*;
 import java.rmi.RemoteException;
 import java.rmi.Naming;
 
-/**Clase intermedia entre el proxy y el servidor. */
+/**Clase intermedia entre el proxy y el servidor.
+ * Tambien funge como sujeto de los observadores.
+ */
 public class ClienteRemoto implements Sujeto {
 
+    /**Proxy de la clase. */
     private static CatalogoProxy proxy;
+    /**Menu catalogo. */
     private static MenuCatalogo menuCatalogo;
 
+    /**
+     * Método main, ejecuta las funciones generales del programa.
+     * @param args un arreglo de argumentos.
+     */
     public void main(String[] args) {
         try {
             Catalogo servidor = (Catalogo) Naming.lookup("rmi://127.0.0.1/CatalogoServidor");
@@ -47,14 +55,28 @@ public class ClienteRemoto implements Sujeto {
         }
     }
 
+    /**
+     * Implementación del método agregar.
+     * @param observador un observador.
+     * @throws RemoteException en caso de errores de comunicación con el servidor.
+     */
     @Override public void agregar(Observador observador) throws RemoteException {
         proxy.inicioSesion(observador);
     }
 
+    /**
+     * Implementación del método eliminar
+     * @param observador un observador a eliminar.
+     * @throws RemoteException en caso de errores de comunicación con el servidor.
+     */
     @Override public void eliminar(Observador observador) throws RemoteException {
         proxy.cierreSesion(observador);
     }
 
+    /**
+     * Implementación del método notificarObservadores. Manda notificaciones a los observadores.
+     * @throws RemoteException en caso de errores de comunicación con el servidor.
+     */
     @Override public void notificarObservadores() throws RemoteException {
         for (ProductoDecorator descuento : proxy.solicitaActualizaciones(menuCatalogo)) {
             menuCatalogo.notificar(descuento);

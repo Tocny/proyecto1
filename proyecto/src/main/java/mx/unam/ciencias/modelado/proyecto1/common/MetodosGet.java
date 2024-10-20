@@ -2,6 +2,7 @@ package mx.unam.ciencias.modelado.proyecto1.common;
 
 import java.util.Scanner;
 
+/**Clase de getters para las entradas del usuario. */
 public class MetodosGet{
 
     /**
