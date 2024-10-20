@@ -152,7 +152,7 @@ public class MenuCatalogo implements Observador, Serializable{
         for (Iterator<ProductoDecorator> iterator = ofertas.iterator(); iterator.hasNext(); ) {
             ProductoDecorator oferta = iterator.next();
             armadorCarro.aplicarDescuentos(oferta);
-            iterator.remove();  // Elimina de manera segura el elemento actual de la lista
+            iterator.remove();
         }
 
 
