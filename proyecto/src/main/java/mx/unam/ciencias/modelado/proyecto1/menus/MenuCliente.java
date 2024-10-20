@@ -4,6 +4,7 @@ import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import mx.unam.ciencias.modelado.proyecto1.factory.fabricaclientes.ClienteIterable;
 import mx.unam.ciencias.modelado.proyecto1.common.MetodosGet;
 
+/**Menú orientado al cliente, solo controla el inicio de sesion. */
 public class MenuCliente {
 
     /**Un objeto iterable de los clientes. */

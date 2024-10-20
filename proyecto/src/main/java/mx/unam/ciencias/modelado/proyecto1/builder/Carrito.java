@@ -5,7 +5,7 @@ import mx.unam.ciencias.modelado.proyecto1.strategy.moneda.Moneda;
 import mx.unam.ciencias.modelado.proyecto1.clientes.Cliente;
 import java.util.List;
 
-
+/**Clase carrito, representa un objeto armable por el builder. */
 public class Carrito {
     /**Lista de productos del carrito */
     List<Producto> productos;

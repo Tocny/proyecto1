@@ -8,7 +8,7 @@ import mx.unam.ciencias.modelado.proyecto1.factory.fabricaproductos.ProductoIter
 import java.rmi.RemoteException;
 import java.util.List;
 
-
+/**Clase catalogo proxy. Se comunica con un servidor. */
 public class CatalogoProxy implements Catalogo{
 
     /**Instancia de catalogo que será nuestro servidor. */
