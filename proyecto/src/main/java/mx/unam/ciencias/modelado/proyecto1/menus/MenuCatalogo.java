@@ -63,9 +63,7 @@ public class MenuCatalogo implements Observador, Serializable{
         }
     }
 
-    /**
-     * Método para mostrar el menú del catálogo y gestionar las acciones del usuario.
-     */
+    /** Método para mostrar el menú del catálogo y gestionar las acciones del usuario. */
     public void mostrarMenu() {
 
         while (true) {
@@ -99,9 +97,7 @@ public class MenuCatalogo implements Observador, Serializable{
         }
     }
 
-    /**
-     * Método para mostrar el catálogo de productos.
-     */
+    /** Método para mostrar el catálogo de productos. */
     private void mostrarCatalogo() {
         for(Producto producto: catalogo){
             Moneda divisa = cliente.getCuentaBancaria().getMoneda();
@@ -109,9 +105,7 @@ public class MenuCatalogo implements Observador, Serializable{
         }
     }
 
-    /**
-     * Método para agregar un producto al carrito.
-     */
+    /** Método para agregar un producto al carrito. */
     private void agregarProductoAlCarrito() {
         String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a agregar:", "ID inválido, intente nuevamente."); 
         Producto producto = catalogo.getProducto(codigoProducto);
@@ -123,9 +117,7 @@ public class MenuCatalogo implements Observador, Serializable{
         }
     }
 
-    /**
-     * Método para eliminar un producto del carrito.
-     */
+    /** Método para eliminar un producto del carrito. */
     private void eliminarProductoDelCarrito() {
         String codigoProducto = MetodosGet.getString("Ingrese el ID del producto a eliminar:", "ID inválido, intente nuevamente."); 
         Producto eliminado = catalogo.getProducto(codigoProducto);
@@ -174,9 +166,7 @@ public class MenuCatalogo implements Observador, Serializable{
 
     }
 
-    /**
-     * Método para cerrar sesión del cliente.
-     */
+    /** Método para cerrar sesión del cliente. */
     private void cerrarSesion() {
         System.out.println("Cerrando sesión de " + cliente.getNombre() + "...");
     }
